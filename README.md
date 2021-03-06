@@ -1,6 +1,5 @@
 # Identicons
 
-## Description
 identicons service
 
 ## Installation
