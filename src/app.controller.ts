@@ -9,7 +9,9 @@ export class AppController {
   @Header('content-type', 'image/png')
   @Header('accept-ranges', 'bytes')
   async identicon(@Res() res, @Param('name') name) {
-    const _identiconBuffer = await this.appService.identicon(name)
+    const _identiconBuffer = await this.appService.identicon(
+      name.toLocaleLowerCase()
+    )
     res.send(_identiconBuffer)
   }
 }
