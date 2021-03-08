@@ -21,9 +21,9 @@ npm run start:dev
 npm run start:prod
 ```
 
-## browser access http://127.0.0.1:3000/identicon/{param}
+## browser access http://127.0.0.1:22000/identicon/{param}
 
-For example: http://127.0.0.1:3000/identicon/helloworld.bit
+For example: http://127.0.0.1:22000/identicon/helloworld.bit
 
 ## pm2 deployment
 ```bash
