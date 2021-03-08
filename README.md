@@ -8,8 +8,6 @@ identicons service
 npm install
 ```
 
-> ⚠️ This project relies on [node-canvas](https://github.com/Automattic/node-canvas), some system-related libraries may need to be installed additionally, for [more details](https://github.com/Automattic/node-canvas).
-
 ## Running the app
 
 ```bash
@@ -26,3 +24,8 @@ npm run start:prod
 ## browser access http://127.0.0.1:3000/identicon/{param}
 
 For example: http://127.0.0.1:3000/identicon/helloworld.bit
+
+## pm2 deployment
+```bash
+npm run start:pm2
+```
