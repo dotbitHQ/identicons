@@ -27,12 +27,12 @@
     "@nestjs/platform-express": "^7.6.13",
     "blueimp-md5": "^2.18.0",
     "cache-manager": "^3.4.1",
-    "gl": "^4.9.0",
+    "canvas": "^2.8.0",
     "node-canvas-webgl": "^0.2.6",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
-    "spritejs": "^3.7.29"
+    "spritejs": "^3.7.34"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.6",
