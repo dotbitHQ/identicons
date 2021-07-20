@@ -27,7 +27,7 @@ pipeline:
     target: /data/code/identicons
     script:
       - cd /data/code/identicons
-      - npm run start:pm2
+      - npm run reload_production
     when:
       branch: [main]
 
