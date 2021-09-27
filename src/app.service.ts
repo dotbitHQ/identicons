@@ -236,10 +236,42 @@ export class AppService {
   }
 
   @Cache({ ttl: TIME_30D })
-  async card(account: string) {
-    const name = account.split('.')[0]
-    const domain = `${account}.host`
-    const link = `https://${domain}`
+  async bestDasCard(account: string) {
+    const url = `bestdas.com/account/${account}`
+
+    const buffer = await this.card(
+      account,
+      'BestDAS',
+      'Scan QR Code or visit it directly',
+      url
+    )
+    return buffer
+  }
+
+  @Cache({ ttl: TIME_30D })
+  async bitccCard(account: string, referer: string) {
+    let url = `${account}.cc`
+
+    if (referer?.includes('bit.host')) {
+      url = `${account}.host`
+    }
+
+    const buffer = await this.card(
+      account,
+      'NFT Page',
+      'Scan QR Code or visit it directly',
+      url
+    )
+    return buffer
+  }
+
+  async card(
+    account: string,
+    title: string,
+    text: string,
+    url: string
+  ): Promise<Buffer> {
+    const link = `https://${url}`
 
     const width = 750
     const height = 1126
@@ -351,7 +383,7 @@ export class AppService {
     const snapshotCanvasCtx = snapshotCanvas.getContext('2d')
 
     // avatar
-    const avatarCanvas = await this.identicon(name)
+    const avatarCanvas = await this.identicon(account)
     drawRoundImage(snapshotCanvasCtx, avatarCanvas, 290, 115, 170)
 
     // account name
@@ -363,7 +395,7 @@ export class AppService {
     })
 
     // NFT page
-    renderTextToCanvas(snapshotCanvasCtx, 'NFT Page', {
+    renderTextToCanvas(snapshotCanvasCtx, title, {
       font: '28px Arial',
       x: widthCenter,
       y: 388,
@@ -371,7 +403,7 @@ export class AppService {
     })
 
     // scan code or QR code
-    renderTextToCanvas(snapshotCanvasCtx, 'Scan QR Code or visit it directly', {
+    renderTextToCanvas(snapshotCanvasCtx, text, {
       font: '28px',
       x: widthCenter,
       y: 740,
@@ -379,7 +411,7 @@ export class AppService {
     })
 
     // domain
-    renderTextToCanvas(snapshotCanvasCtx, domain, {
+    renderTextToCanvas(snapshotCanvasCtx, url, {
       font: 'bold 36px Arial',
       x: widthCenter,
       y: 790,
