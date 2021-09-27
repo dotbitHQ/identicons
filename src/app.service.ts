@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common'
+import { CanvasRenderingContext2D } from 'canvas'
+import { Canvas, createCanvas } from 'node-canvas-webgl'
+import QRCode from 'qrcode'
 import path from 'path'
 import md5 from 'blueimp-md5'
 import { polyfill } from 'spritejs/lib/platform/node-canvas'
 import { Scene, Rect, Path, Sprite, Ring, ENV } from 'spritejs/lib'
+import { TIME_30D } from './constants/index'
 import { Cache } from './decorators/cache.decorator'
+import { accountColor } from './modules/tools'
 
 polyfill({ ENV })
 
@@ -67,6 +72,49 @@ const COLORS: string[] = [
   '#DE2E62'
 ]
 
+function renderTextToCanvas(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  { x, y, font, color }
+) {
+  ctx.font = font
+  ctx.textAlign = 'center'
+  ctx.fillStyle = color
+  ctx.fillText(text, x, y)
+}
+
+function generateQrCode(text): Promise<Canvas> {
+  return new Promise((resolve, reject) => {
+    const canvas = createCanvas(400, 400)
+
+    QRCode.toCanvas(canvas, text, { margin: 0 }, function (err) {
+      console.log(err, canvas)
+      if (err) {
+        reject(err)
+      } else {
+        resolve(canvas)
+      }
+    })
+  })
+}
+
+function drawRoundImage(
+  ctx: CanvasRenderingContext2D,
+  img: Canvas,
+  x: number,
+  y: number,
+  d: number
+) {
+  const r = d / 2
+  const centerX = x + r
+  const centerY = y + r
+  ctx.save()
+  ctx.arc(centerX, centerY, r, 0, 2 * Math.PI)
+  ctx.clip()
+  ctx.drawImage(img, x, y, d, d)
+  ctx.restore()
+}
+
 function getPositions(domainMd5: string): PositionsObject {
   const _positionArray: string[] = []
   const _positionObject: PositionsObject = {}
@@ -106,8 +154,13 @@ function getFigurePaths(domainMd5: string): number[] {
 
 @Injectable()
 export class AppService {
-  @Cache({ ttl: 30 * 24 * 60 * 60 })
-  async identicon(name: string) {
+  @Cache({ ttl: TIME_30D })
+  async identiconBuffer(account: string) {
+    const canvas = await this.identicon(account)
+    return canvas.toBuffer()
+  }
+
+  async identicon(name: string): Promise<Canvas> {
     const nameMd5 = md5(name)
     const _colors: number[] = getColors(nameMd5)
     const _positions: PositionsObject = getPositions(nameMd5)
@@ -179,6 +232,164 @@ export class AppService {
     layer.append(ring)
 
     const snapshotCanvas = scene.snapshot()
+    return snapshotCanvas
+  }
+
+  @Cache({ ttl: TIME_30D })
+  async card(account: string) {
+    const name = account.split('.')[0]
+    const domain = `${account}.host`
+    const link = `https://${domain}`
+
+    const width = 750
+    const height = 1126
+
+    const widthCenter = width / 2
+
+    const scene = new Scene({
+      width,
+      height,
+      displayRatio: 1
+    })
+
+    const cardLogoId = 'card-logo'
+    const cardDecorationId = 'card-decoration'
+    const cardNftsId = 'card-nfts'
+
+    const layer = scene.layer()
+
+    // background
+    layer.append(
+      new Rect({
+        normalize: true,
+        pos: [width / 2, height / 2],
+        size: [width, height],
+        fillColor: accountColor(account)
+      })
+    )
+
+    // logo
+    await scene.preload({
+      id: cardLogoId,
+      src: path.resolve('./src/img/card-logo.png')
+    })
+    const logoSprite = new Sprite(cardLogoId)
+    logoSprite.attr({
+      pos: [36, 36],
+      size: [125, 45]
+    })
+    layer.appendChild(logoSprite)
+
+    // decoration
+    await scene.preload({
+      id: cardDecorationId,
+      src: path.resolve('./src/img/card-decoration.png')
+    })
+    const backgroundSprite = new Sprite(cardDecorationId)
+    backgroundSprite.attr({
+      pos: [521, 0],
+      size: [230, 240]
+    })
+    layer.appendChild(backgroundSprite)
+
+    // card
+    layer.append(
+      new Sprite({
+        // anchor: 0.5,
+        pos: [36, 198],
+        size: [678, 892],
+        bgcolor: '#ffffff',
+        borderRadius: 27
+      })
+    )
+
+    // avatar background
+    layer.append(
+      new Sprite({
+        anchor: 0.5,
+        pos: [widthCenter, 198],
+        size: [170, 170],
+        bgcolor: '#ffffff',
+        border: [10, '#ffffff'],
+        borderRadius: 150
+      })
+    )
+
+    // lines
+    layer.append(
+      new Rect({
+        normalize: true,
+        pos: [widthCenter, 445],
+        size: [562, 1],
+        fillColor: '#f0f0f0'
+      })
+    )
+
+    layer.append(
+      new Rect({
+        normalize: true,
+        pos: [widthCenter, 853],
+        size: [562, 1],
+        fillColor: '#f5f5f5'
+      })
+    )
+
+    // nfts
+    await scene.preload({
+      id: cardNftsId,
+      src: path.resolve('./src/img/card-nfts.png')
+    })
+    const nftsSprite = new Sprite(cardNftsId)
+    nftsSprite.attr({
+      anchor: 0.5,
+      pos: [widthCenter, 957],
+      size: [678, 146]
+    })
+    layer.appendChild(nftsSprite)
+
+    const snapshotCanvas = scene.snapshot()
+    const snapshotCanvasCtx = snapshotCanvas.getContext('2d')
+
+    // avatar
+    const avatarCanvas = await this.identicon(name)
+    drawRoundImage(snapshotCanvasCtx, avatarCanvas, 290, 115, 170)
+
+    // account name
+    renderTextToCanvas(snapshotCanvasCtx, account, {
+      font: 'bold 48px Arial',
+      x: widthCenter,
+      y: 340,
+      color: 'black'
+    })
+
+    // NFT page
+    renderTextToCanvas(snapshotCanvasCtx, 'NFT Page', {
+      font: '28px Arial',
+      x: widthCenter,
+      y: 388,
+      color: '#979797'
+    })
+
+    // scan code or QR code
+    renderTextToCanvas(snapshotCanvasCtx, 'Scan QR Code or visit it directly', {
+      font: '28px',
+      x: widthCenter,
+      y: 740,
+      color: '#6F7684'
+    })
+
+    // domain
+    renderTextToCanvas(snapshotCanvasCtx, domain, {
+      font: 'bold 36px Arial',
+      x: widthCenter,
+      y: 790,
+      color: '#49B4C1'
+    })
+
+    // qrcode
+    const qrcodeCanvas = await generateQrCode(link)
+    snapshotCanvasCtx.drawImage(qrcodeCanvas, 270, 490, 200, 200)
+
     return snapshotCanvas.toBuffer()
   }
 }
