@@ -88,7 +88,6 @@ function generateQrCode(text): Promise<Canvas> {
     const canvas = createCanvas(400, 400)
 
     QRCode.toCanvas(canvas, text, { margin: 0 }, function (err) {
-      console.log(err, canvas)
       if (err) {
         reject(err)
       } else {
@@ -237,30 +236,26 @@ export class AppService {
 
   @Cache({ ttl: TIME_30D })
   async bestDasCard(account: string) {
-    const url = `bestdas.com/account/${account}`
+    const href = `https://bestdas.com/account/${account}`
 
     const buffer = await this.card(
       account,
       'BestDAS',
       'Scan QR Code or visit it directly',
-      url
+      href
     )
     return buffer
   }
 
   @Cache({ ttl: TIME_30D })
   async bitccCard(account: string, referer: string) {
-    let url = `${account}.cc`
-
-    if (referer?.includes('bit.host')) {
-      url = `${account}.host`
-    }
+    const href = referer ? referer : `https://${account}.cc`
 
     const buffer = await this.card(
       account,
       'NFT Page',
       'Scan QR Code or visit it directly',
-      url
+      href
     )
     return buffer
   }
@@ -269,10 +264,8 @@ export class AppService {
     account: string,
     title: string,
     text: string,
-    url: string
+    href: string
   ): Promise<Buffer> {
-    const link = `https://${url}`
-
     const width = 750
     const height = 1126
 
@@ -411,7 +404,7 @@ export class AppService {
     })
 
     // domain
-    renderTextToCanvas(snapshotCanvasCtx, url, {
+    renderTextToCanvas(snapshotCanvasCtx, href.replace(/https?:\/\//, ''), {
       font: 'bold 36px Arial',
       x: widthCenter,
       y: 790,
@@ -419,7 +412,7 @@ export class AppService {
     })
 
     // qrcode
-    const qrcodeCanvas = await generateQrCode(link)
+    const qrcodeCanvas = await generateQrCode(href)
     snapshotCanvasCtx.drawImage(qrcodeCanvas, 270, 490, 200, 200)
 
     return snapshotCanvas.toBuffer()
