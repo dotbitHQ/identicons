@@ -125,7 +125,7 @@ export class AvatarService {
     const ctx = canvas.getContext('2d')
 
     // apply units backwards
-    for (let i = layers.length - 1; i > 0; i--) {
+    for (let i = layers.length - 1; i >= 0; i--) {
       const layer = layers[i]
 
       const variantWeight = getWeight(hash, layer)
