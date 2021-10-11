@@ -8,7 +8,7 @@ import { polyfill } from 'spritejs/lib/platform/node-canvas'
 import { Scene, Rect, Path, Sprite, Ring, ENV } from 'spritejs/lib'
 import { TIME_30D } from './constants/index'
 import { Cache } from './decorators/cache.decorator'
-import { accountColor } from './modules/tools'
+import { accountColor } from 'das-ui-shared'
 
 polyfill({ ENV })
 
