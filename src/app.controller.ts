@@ -24,6 +24,8 @@ export class AppController {
 
   @Get('/avatar/:account')
   @Header('content-type', 'image/png')
+  @Header('accept-ranges', 'bytes')
+  @Header('Cache-Control', `public, max-age=${TIME_30D}`)
   async avatar (@Res() res, @Param('account') account: string): Promise<void> {
     const avatar = await this.avatarService.avatar(account.toLowerCase())
 
