@@ -30,7 +30,7 @@
     "blueimp-md5": "^2.18.0",
     "cache-manager": "^3.4.1",
     "canvas": "2.6.1",
-    "das-ui-shared": "^0.0.7",
+    "das-ui-shared": "^0.0.9",
     "node-canvas-webgl": "^0.2.6",
     "qrcode": "^1.4.4",
     "reflect-metadata": "^0.1.13",
@@ -62,7 +62,8 @@
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "vue": "^2.6.14"
   },
   "jest": {
     "moduleFileExtensions": [

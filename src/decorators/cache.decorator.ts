@@ -8,8 +8,8 @@ const memoryCache = cacheManager.caching({
 })
 
 interface CacheConfig {
-  key?: string
-  ttl: number // seconds
+  key?: string,
+  ttl: number, // seconds
 }
 
 /**
@@ -18,7 +18,7 @@ interface CacheConfig {
  * @param ttl
  * @constructor
  */
-export function Cache({ key, ttl }: CacheConfig = { ttl: 10 }) {
+export function Cache ({ key, ttl }: CacheConfig = { ttl: 10 }) {
   return function (
     target: Record<string, any>,
     propertyKey: string,

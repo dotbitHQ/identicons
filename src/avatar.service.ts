@@ -3,6 +3,8 @@ import { Injectable } from '@nestjs/common'
 import { CanvasRenderingContext2D, createCanvas, Image, loadImage } from 'canvas'
 import { accountColor } from 'das-ui-shared'
 import path from 'path'
+import { TIME_30D } from './constants/index'
+import { Cache } from './decorators/cache.decorator'
 
 function unitIndexes (length: number): string[] {
   const maxLength = Math.max(length.toString().length, 2)
@@ -34,6 +36,11 @@ async function loadUnitImage (layer: Layer, index: string): Promise<Image> {
       `imgs/davatar/layer${layer.layer}-${layer.name}/${layer.name}-${index}.png`
     )
   )
+}
+
+function getWeight (hash: string, layer: Layer): number {
+  const hex = layer.fromBytes.map(byteIndex => hash[byteIndex]).join('')
+  return parseInt(hex, 16)
 }
 
 const layers = [
@@ -105,21 +112,41 @@ const layers = [
   }
 ]
 
+enum AvatarSize {
+  xxs = 'xxs', // 50
+  xs = 'xs', // 100
+  sm = 'sm', // 200
+  md = 'md', // 300
+  lg = 'lg', // 500
+  xl = 'xl', // 800
+  xxl = 'xxl', // 1000
+}
+
+const AvatarSizeMap = {
+  [AvatarSize.xxs]: 50,
+  [AvatarSize.xs]: 100,
+  [AvatarSize.sm]: 200,
+  [AvatarSize.md]: 300,
+  [AvatarSize.lg]: 500,
+  [AvatarSize.xl]: 800,
+  [AvatarSize.xxl]: 1000,
+}
+
 type Layer = typeof layers[0]
 
-function getWeight (hash: string, layer: Layer): number {
-  const hex = layer.fromBytes.map(byteIndex => hash[byteIndex]).join('')
-  return parseInt(hex, 16)
+export interface AvatarOptions {
+  size?: AvatarSize,
 }
 
 @Injectable()
 export class AvatarService {
-  async avatar (account: string): Promise<Buffer> {
+  @Cache({ ttl: TIME_30D })
+  async avatar (account: string, options: AvatarOptions = {}): Promise<Buffer> {
     // account = new Date().toString()
     const name = account.replace(/\.bit$/, '')
     const hash = blake2bHash(name)
 
-    const size = 1000
+    const size = (options.size && AvatarSizeMap[options.size]) || AvatarSizeMap[AvatarSize.md]
 
     const canvas = createCanvas(size, size)
     const ctx = canvas.getContext('2d')
@@ -139,12 +166,10 @@ export class AvatarService {
         const image = await loadUnitImage(layer, unitIndex)
 
         ctx.drawImage(image, 0, 0, size, size)
-
-        // console.log(layer.name, variantWeight, unitIndex)
       }
     }
 
-    return canvas.toBuffer('image/png', { compressionLevel: 1 })
+    return canvas.toBuffer('image/png', { compressionLevel: 9 })
   }
 
   drawPlainBackground (account: string, ctx: CanvasRenderingContext2D, size: number): void {

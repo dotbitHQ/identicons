@@ -1,7 +1,7 @@
-import { Controller, Get, Header, Headers, Param, Res } from '@nestjs/common'
+import { Controller, Get, Header, Headers, Param, Query, Res } from '@nestjs/common'
 import { Response } from 'express'
 import { AppService } from './app.service'
-import { AvatarService } from './avatar.service'
+import { AvatarOptions, AvatarService } from './avatar.service'
 import { TIME_30D } from './constants/index'
 
 @Controller()
@@ -26,8 +26,8 @@ export class AppController {
   @Header('content-type', 'image/png')
   @Header('accept-ranges', 'bytes')
   @Header('Cache-Control', `public, max-age=${TIME_30D}`)
-  async avatar (@Res() res, @Param('account') account: string): Promise<void> {
-    const avatar = await this.avatarService.avatar(account.toLowerCase())
+  async avatar (@Res() res, @Param('account') account: string, @Query() query: AvatarOptions): Promise<void> {
+    const avatar = await this.avatarService.avatar(account.toLowerCase(), query)
 
     res.send(avatar)
   }
