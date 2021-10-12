@@ -3,8 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { CanvasRenderingContext2D, createCanvas, Image, loadImage } from 'canvas'
 import { accountColor } from 'das-ui-shared'
 import path from 'path'
-import { TIME_30D } from './constants/index'
-import { Cache } from './decorators/cache.decorator'
+import { LocalCache } from './decorators/cache.decorator'
 
 function unitIndexes (length: number): string[] {
   const maxLength = Math.max(length.toString().length, 2)
@@ -140,7 +139,10 @@ export interface AvatarOptions {
 
 @Injectable()
 export class AvatarService {
-  @Cache({ ttl: TIME_30D })
+  @LocalCache({
+    dir: 'avatar',
+    key: (account: string, options: AvatarOptions = {}) => `${account}.${options.size || AvatarSize.md}.png`
+  })
   async avatar (account: string, options: AvatarOptions = {}): Promise<Buffer> {
     // account = new Date().toString()
     const name = account.replace(/\.bit$/, '')
