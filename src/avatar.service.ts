@@ -32,7 +32,7 @@ async function loadUnitImage (layer: Layer, index: string): Promise<Image> {
     path.resolve(
       __dirname,
       '../src',
-      `imgs/davatar/layer${layer.layer}-${layer.name}/${layer.name}-${index}.png`
+      `imgs/avatar/layer${layer.layer}-${layer.name}/${layer.name}-${index}.png`
     )
   )
 }
