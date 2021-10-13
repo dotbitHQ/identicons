@@ -8,7 +8,7 @@ import { polyfill } from 'spritejs/lib/platform/node-canvas'
 import { Scene, Rect, Path, Sprite, Ring, ENV } from 'spritejs/lib'
 import { TIME_30D } from './constants/index'
 import { Cache } from './decorators/cache.decorator'
-import { accountColor } from './modules/tools'
+import { accountColor } from 'das-ui-shared'
 
 polyfill({ ENV })
 
@@ -176,7 +176,7 @@ export class AppService {
 
     await scene.preload({
       id: 'logoUrl',
-      src: path.resolve('./src/img/logo.png')
+      src: path.resolve('./src/imgs/logo.png')
     })
 
     const layer = scene.layer()
@@ -303,7 +303,7 @@ export class AppService {
     // logo
     await scene.preload({
       id: cardLogoId,
-      src: path.resolve('./src/img/card-logo.png')
+      src: path.resolve('./src/imgs/card-logo.png')
     })
     const logoSprite = new Sprite(cardLogoId)
     logoSprite.attr({

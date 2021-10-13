@@ -1,5 +1,9 @@
+import fsRaw from 'fs'
+import path from 'path'
 import * as cacheManager from 'cache-manager'
 import md5 from 'blueimp-md5'
+
+const fs = fsRaw.promises
 
 const memoryCache = cacheManager.caching({
   store: 'memory',
@@ -8,8 +12,13 @@ const memoryCache = cacheManager.caching({
 })
 
 interface CacheConfig {
-  key?: string
-  ttl: number // seconds
+  key?: string | ((...args: any[]) => string),
+  ttl: number, // seconds
+}
+
+interface LocalCacheConfig {
+  key?: string | ((...args: any[]) => string),
+  dir: string,
 }
 
 /**
@@ -18,7 +27,7 @@ interface CacheConfig {
  * @param ttl
  * @constructor
  */
-export function Cache({ key, ttl }: CacheConfig = { ttl: 10 }) {
+export function Cache ({ key, ttl }: CacheConfig = { ttl: 10 }) {
   return function (
     target: Record<string, any>,
     propertyKey: string,
@@ -29,7 +38,7 @@ export function Cache({ key, ttl }: CacheConfig = { ttl: 10 }) {
     }
     const method = descriptor.value
     descriptor.value = async function (...args: any[]) {
-      const cacheKey = key + md5(JSON.stringify(args))
+      const cacheKey = (key as string) + md5(JSON.stringify(args))
       const cachedItem = await memoryCache.get(cacheKey)
       if (cachedItem) {
         return cachedItem
@@ -37,6 +46,39 @@ export function Cache({ key, ttl }: CacheConfig = { ttl: 10 }) {
 
       const result = await method.apply(this, args)
       await memoryCache.set(cacheKey, result, { ttl })
+      return result
+    }
+  }
+}
+
+export function LocalCache ({ key, dir }: LocalCacheConfig = { dir: '' }): any {
+  const cacheFolder = path.resolve(process.cwd(), '.cache', dir)
+  console.log(`creating folder: ${cacheFolder}`)
+  void fs.mkdir(cacheFolder, { recursive: true })
+
+  return function (
+    target: Record<string, any>,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    if (!key) {
+      key = `${target.constructor.name}/${propertyKey.toString()}`
+    }
+    const method = descriptor.value
+
+    descriptor.value = async function (...args: any[]) {
+      const cacheKey = typeof key === 'string' ? key + md5(JSON.stringify(args)) : key.apply(this, args)
+      const cacheFilePath = path.resolve(cacheFolder, cacheKey)
+
+      try {
+        return await fs.readFile(cacheFilePath)
+      }
+      catch (err) {}
+
+      const result = await method.apply(this, args)
+
+      await fs.writeFile(cacheFilePath, result)
+
       return result
     }
   }
