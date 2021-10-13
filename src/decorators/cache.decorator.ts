@@ -1,7 +1,9 @@
-import fs from 'fs/promises'
+import fsRaw from 'fs'
 import path from 'path'
 import * as cacheManager from 'cache-manager'
 import md5 from 'blueimp-md5'
+
+const fs = fsRaw.promises
 
 const memoryCache = cacheManager.caching({
   store: 'memory',
@@ -36,7 +38,7 @@ export function Cache ({ key, ttl }: CacheConfig = { ttl: 10 }) {
     }
     const method = descriptor.value
     descriptor.value = async function (...args: any[]) {
-      const cacheKey = key + md5(JSON.stringify(args))
+      const cacheKey = (key as string) + md5(JSON.stringify(args))
       const cachedItem = await memoryCache.get(cacheKey)
       if (cachedItem) {
         return cachedItem
