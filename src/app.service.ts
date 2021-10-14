@@ -315,7 +315,7 @@ export class AppService {
     // decoration
     await scene.preload({
       id: cardDecorationId,
-      src: path.resolve('./src/img/card-decoration.png')
+      src: path.resolve('./src/imgs/card-decoration.png')
     })
     const backgroundSprite = new Sprite(cardDecorationId)
     backgroundSprite.attr({
@@ -369,7 +369,7 @@ export class AppService {
     // nfts
     await scene.preload({
       id: cardNftsId,
-      src: path.resolve('./src/img/card-nfts.png')
+      src: path.resolve('./src/imgs/card-nfts.png')
     })
     const nftsSprite = new Sprite(cardNftsId)
     nftsSprite.attr({
