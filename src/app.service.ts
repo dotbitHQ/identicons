@@ -83,7 +83,7 @@ function renderTextToCanvas(
   ctx.fillText(text, x, y)
 }
 
-function generateQrCode(text): Promise<Canvas> {
+function generateQrCode (text): Promise<Canvas> {
   return new Promise((resolve, reject) => {
     const canvas = createCanvas(400, 400)
 
@@ -91,7 +91,8 @@ function generateQrCode(text): Promise<Canvas> {
       console.log(err, canvas)
       if (err) {
         reject(err)
-      } else {
+      }
+      else {
         resolve(canvas)
       }
     })
@@ -296,7 +297,7 @@ export class AppService {
         normalize: true,
         pos: [width / 2, height / 2],
         size: [width, height],
-        fillColor: accountColor(account)
+        fillColor: accountColor(account).color
       })
     )
 
