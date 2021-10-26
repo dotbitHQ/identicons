@@ -202,17 +202,17 @@ export class AppService {
     )
 
     // sale tag
-    const saleTagId = 'sale-tag'
-    await scene.preload({
-      id: saleTagId,
-      src: path.resolve(`./src/imgs/${saleTagId}.png`)
-    })
-    const logoSprite = new Sprite(saleTagId)
-    logoSprite.attr({
-      pos: [615, 340],
-      size: [120, 120]
-    })
-    layer.appendChild(logoSprite)
+    // const saleTagId = 'sale-tag'
+    // await scene.preload({
+    //   id: saleTagId,
+    //   src: path.resolve(`./src/imgs/${saleTagId}.png`)
+    // })
+    // const logoSprite = new Sprite(saleTagId)
+    // logoSprite.attr({
+    //   pos: [615, 340],
+    //   size: [120, 120]
+    // })
+    // layer.appendChild(logoSprite)
 
     const snapshotCanvas = scene.snapshot()
     const snapshotCanvasCtx = snapshotCanvas.getContext('2d')
