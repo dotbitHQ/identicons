@@ -156,7 +156,7 @@ function getFigurePaths(domainMd5: string): number[] {
 @Injectable()
 export class AppService {
   @Cache({ ttl: TIME_30D })
-  async seo(account: string): Promise<Buffer> {
+  async seo(account: string, saleTag?: boolean): Promise<Buffer> {
     const width = 900
     const height = 473
     const widthCenter = width / 2
@@ -201,18 +201,20 @@ export class AppService {
       })
     )
 
-    // sale tag
-    // const saleTagId = 'sale-tag'
-    // await scene.preload({
-    //   id: saleTagId,
-    //   src: path.resolve(`./src/imgs/${saleTagId}.png`)
-    // })
-    // const logoSprite = new Sprite(saleTagId)
-    // logoSprite.attr({
-    //   pos: [615, 340],
-    //   size: [120, 120]
-    // })
-    // layer.appendChild(logoSprite)
+    if (saleTag) {
+      // sale tag
+      const saleTagId = 'sale-tag'
+      await scene.preload({
+        id: saleTagId,
+        src: path.resolve(`./src/imgs/${saleTagId}.png`)
+      })
+      const logoSprite = new Sprite(saleTagId)
+      logoSprite.attr({
+        pos: [615, 340],
+        size: [120, 120]
+      })
+      layer.appendChild(logoSprite)
+    }
 
     const snapshotCanvas = scene.snapshot()
     const snapshotCanvasCtx = snapshotCanvas.getContext('2d')
