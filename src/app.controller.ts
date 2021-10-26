@@ -22,6 +22,17 @@ export class AppController {
     res.send(_identiconCanvas)
   }
 
+  @Get('/seo/:name')
+  @Header('content-type', 'image/png')
+  @Header('accept-ranges', 'bytes')
+  @Header('Cache-Control', `public, max-age=${TIME_30D}`)
+  async seo (@Res() res, @Param('name') name): Promise<void> {
+    const seo = await this.appService.seo(
+      name.toLowerCase()
+    )
+    res.send(seo)
+  }
+
   @Get('/avatar/:account')
   @Header('content-type', 'image/png')
   @Header('accept-ranges', 'bytes')

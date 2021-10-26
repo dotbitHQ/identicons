@@ -156,7 +156,110 @@ function getFigurePaths(domainMd5: string): number[] {
 @Injectable()
 export class AppService {
   @Cache({ ttl: TIME_30D })
-  async identiconBuffer(account: string) {
+  async seo(account: string): Promise<Buffer> {
+    const width = 900
+    const height = 473
+    const widthCenter = width / 2
+
+    const scene = new Scene({
+      width: width,
+      height: height,
+      displayRatio: 1
+    })
+
+    const layer = scene.layer()
+
+    // background
+    layer.append(
+      new Rect({
+        normalize: true,
+        pos: [widthCenter, height / 2],
+        size: [width, height],
+        fillColor: accountColor(account).color
+      })
+    )
+
+    // decoration
+    const seoCardDecorationId = 'seo-card-decoration'
+    await scene.preload({
+      id: seoCardDecorationId,
+      src: path.resolve('./src/imgs/seo-card-decoration.png')
+    })
+    const backgroundSprite = new Sprite(seoCardDecorationId)
+    backgroundSprite.attr({
+      pos: [199, 107],
+      size: [502, 319]
+    })
+    layer.appendChild(backgroundSprite)
+
+    layer.append(
+      new Sprite({
+        pos: [widthCenter - 89.5, 284],
+        size: [179, 80],
+        borderRadius: 40,
+        bgcolor: 'rgba(0, 0, 0, 0.1)'
+      })
+    )
+
+    // sale tag
+    const saleTagId = 'sale-tag'
+    await scene.preload({
+      id: saleTagId,
+      src: path.resolve(`./src/imgs/${saleTagId}.png`)
+    })
+    const logoSprite = new Sprite(saleTagId)
+    logoSprite.attr({
+      pos: [615, 340],
+      size: [120, 120]
+    })
+    layer.appendChild(logoSprite)
+
+    const snapshotCanvas = scene.snapshot()
+    const snapshotCanvasCtx = snapshotCanvas.getContext('2d')
+
+    // avatar
+    const avatarCanvas = await this.identicon(account)
+    drawRoundImage(snapshotCanvasCtx, avatarCanvas, 395, 50, 110)
+
+    const accountArray = account.split('.')
+    const accountName= accountArray[0]
+    let fontSize = 76
+    if (accountName.length >= 32) {
+      fontSize = 26
+    }
+    else if (accountName.length >= 28) {
+      fontSize = 30
+    }
+    else if (accountName.length >= 18) {
+      fontSize = 44
+    }
+    else if (accountName.length >= 14) {
+      fontSize = 56
+    }
+    else if (accountName.length >= 10) {
+      fontSize = 62
+    }
+
+    // account name
+    renderTextToCanvas(snapshotCanvasCtx, accountName, {
+      font: `bold ${fontSize}px Arial`,
+      x: widthCenter,
+      y: 250,
+      color: 'white'
+    })
+
+    renderTextToCanvas(snapshotCanvasCtx, '.bit', {
+      font: 'bold 76px Arial',
+      x: widthCenter,
+      y: 350,
+      color: 'white'
+    })
+
+    return snapshotCanvas.toBuffer()
+  }
+
+  @Cache({ ttl: TIME_30D })
+  async identiconBuffer(account: string): Promise<Buffer> {
     const canvas = await this.identicon(account)
     return canvas.toBuffer()
   }
