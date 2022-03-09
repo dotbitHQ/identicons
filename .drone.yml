@@ -1,21 +1,12 @@
 pipeline:
-  # restore node_modules from cache
-  restore-cache:
-    image: drillster/drone-volume-cache
-    restore: true
-    mount:
-      - ./node_modules
-    volumes:
-      - /tmp/cache/drone/identicons:/cache
-
   # production build
-  build:
-    image: node:lts
-    commands:
-      - npm install
-      - npm run build
-    when:
-      branch: [main]
+  #  build:
+  #    image: node:lts
+  #    commands:
+  #      - npm install
+  #      - npm run build
+  #    when:
+  #      branch: [main]
 
   # deploy to production
   deploy_production:
@@ -27,39 +18,7 @@ pipeline:
     target: /data/code/identicons
     script:
       - cd /data/code/identicons
+      - npm run build
       - npm run reload_production
     when:
       branch: [main]
-
-  # restore cache for node_modules
-  rebuild-cache:
-    image: drillster/drone-volume-cache
-    rebuild: true
-    mount:
-      - ./node_modules
-    volumes:
-      - /tmp/cache/drone/identicons:/cache
-
-  wechat_success:
-    image: lizheming/drone-wechat
-    secrets: [plugin_corpid, plugin_corp_secret, plugin_agent_id]
-    title: '${DRONE_REPO_NAME} ${DRONE_COMMIT_BRANCH} built successfully✅'
-    message: "Branch: ${DRONE_COMMIT_BRANCH} Seq: ${DRONE_BUILD_NUMBER}. Committer: ${DRONE_COMMIT_AUTHOR}. Check out: ${DRONE_BUILD_LINK} "
-    to_user: 'jeff'
-    to_party: 2
-    msg_url: ${DRONE_BUILD_LINK}
-    btn_txt: Details
-    when:
-      status: [ success ]
-
-  wechat_failed:
-    image: lizheming/drone-wechat
-    secrets: [plugin_corpid, plugin_corp_secret, plugin_agent_id]
-    title: '${DRONE_REPO_NAME} ${DRONE_COMMIT_BRANCH} built failed‼️'
-    message: "Branch: ${DRONE_COMMIT_BRANCH} Seq: ${DRONE_BUILD_NUMBER}. Committer: ${DRONE_COMMIT_AUTHOR}. Check out: ${DRONE_BUILD_LINK} "
-    to_user: 'jeff'
-    to_party: 2
-    msg_url: ${DRONE_BUILD_LINK}
-    btn_txt: Details
-    when:
-      status: [ failure ]
