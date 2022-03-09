@@ -414,7 +414,7 @@ export class AppService {
     const logoSprite = new Sprite(cardLogoId)
     logoSprite.attr({
       pos: [36, 36],
-      size: [125, 45]
+      size: [108, 43]
     })
     layer.appendChild(logoSprite)
 
