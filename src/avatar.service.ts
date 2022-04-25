@@ -137,14 +137,19 @@ export interface AvatarOptions {
   size?: AvatarSize,
 }
 
+function drawPlainBackground (account: string, ctx: CanvasRenderingContext2D, size: number): void {
+  const color = accountColor(account)
+  ctx.fillStyle = color.color
+  ctx.fillRect(0, 0, size, size)
+}
+
 @Injectable()
 export class AvatarService {
   @LocalCache({
     dir: 'avatar',
-    key: (account: string, options: AvatarOptions = {}) => `${account}.${options.size || AvatarSize.md}.png`
+    key: (account: string, options: AvatarOptions = {}) => `${account}.${options.size || AvatarSize.md}.jpg`
   })
   async avatar (account: string, options: AvatarOptions = {}): Promise<Buffer> {
-    // account = new Date().toString()
     const name = account.replace(/\.bit$/, '')
     const hash = blake2bHash(name)
 
@@ -160,7 +165,7 @@ export class AvatarService {
       const variantWeight = getWeight(hash, layer)
 
       if (layer.name === 'texture' && variantWeight > layer.units.length) {
-        this.drawPlainBackground(account, ctx, size)
+        drawPlainBackground(account, ctx, size)
       }
       else {
         const unitIndex = layer.units[variantWeight % layer.units.length]
@@ -171,12 +176,6 @@ export class AvatarService {
       }
     }
 
-    return canvas.toBuffer('image/png', { compressionLevel: 9 })
-  }
-
-  drawPlainBackground (account: string, ctx: CanvasRenderingContext2D, size: number): void {
-    const color = accountColor(account)
-    ctx.fillStyle = color.color
-    ctx.fillRect(0, 0, size, size)
+    return canvas.toBuffer('image/jpeg', { quality: 0.9 })
   }
 }

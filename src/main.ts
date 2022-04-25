@@ -8,6 +8,8 @@ async function bootstrap (): Promise<void> {
   app.enableCors()
 
   await app.listen(config.port)
+
+  console.log(`app is running on port ${config.port}`, `http://127.0.0.1:${config.port}`)
 }
 
 void bootstrap()

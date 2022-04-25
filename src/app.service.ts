@@ -13,10 +13,10 @@ import { accountColor } from 'das-ui-shared'
 polyfill({ ENV })
 
 interface PositionsObject {
-  [key: string]: [number, number]
+  [key: string]: [number, number],
 }
 
-const POSITIONS: [number, number][] = [
+const POSITIONS: Array<[number, number]> = [
   [0, 0],
   [20, 0],
   [40, 0],
@@ -72,7 +72,7 @@ const COLORS: string[] = [
   '#DE2E62'
 ]
 
-function renderTextToCanvas(
+function renderTextToCanvas (
   ctx: CanvasRenderingContext2D,
   text: string,
   { x, y, font, color }
@@ -99,7 +99,7 @@ function generateQrCode (text): Promise<Canvas> {
   })
 }
 
-function drawRoundImage(
+function drawRoundImage (
   ctx: CanvasRenderingContext2D,
   img: Canvas,
   x: number,
@@ -116,7 +116,7 @@ function drawRoundImage(
   ctx.restore()
 }
 
-function getPositions(domainMd5: string): PositionsObject {
+function getPositions (domainMd5: string): PositionsObject {
   const _positionArray: string[] = []
   const _positionObject: PositionsObject = {}
   for (let i = 0; i <= 8; i++) {
@@ -129,7 +129,7 @@ function getPositions(domainMd5: string): PositionsObject {
   return _positionObject
 }
 
-function getColors(domainMd5: string): number[] {
+function getColors (domainMd5: string): number[] {
   const _strArray: string[] = []
   let _colorArray: number[] = []
   for (let i = 0; i <= 9; i++) {
@@ -141,7 +141,7 @@ function getColors(domainMd5: string): number[] {
   return _colorArray
 }
 
-function getFigurePaths(domainMd5: string): number[] {
+function getFigurePaths (domainMd5: string): number[] {
   const _strArray: string[] = []
   let _figurePathArray: number[] = []
   for (let i = 0; i <= 8; i++) {
@@ -266,7 +266,7 @@ export class AppService {
     return canvas.toBuffer()
   }
 
-  async identicon(name: string): Promise<Canvas> {
+  async identicon (name: string): Promise<Canvas> {
     const nameMd5 = md5(name)
     const _colors: number[] = getColors(nameMd5)
     const _positions: PositionsObject = getPositions(nameMd5)
@@ -342,7 +342,7 @@ export class AppService {
   }
 
   @Cache({ ttl: TIME_30D })
-  async bestDasCard(account: string) {
+  async bestDasCard (account: string) {
     const url = `bestdas.com/account/${account}`
 
     const buffer = await this.card(
@@ -355,7 +355,7 @@ export class AppService {
   }
 
   @Cache({ ttl: TIME_30D })
-  async bitccCard(account: string, referer: string) {
+  async bitccCard (account: string, referer: string) {
     let url = `${account}.cc`
 
     if (referer?.includes('bit.host')) {
@@ -371,7 +371,7 @@ export class AppService {
     return buffer
   }
 
-  async card(
+  async card (
     account: string,
     title: string,
     text: string,
