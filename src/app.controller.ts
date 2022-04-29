@@ -2,7 +2,7 @@ import { Controller, Get, Header, Headers, Param, Query, Res } from '@nestjs/com
 import { Response } from 'express'
 import { AppService } from './app.service'
 import { AvatarOptions, AvatarService } from './avatar.service'
-import { TIME_30D } from './constants/index'
+import { TIME_1H, TIME_30D } from './constants/index'
 
 @Controller()
 export class AppController {
@@ -53,6 +53,12 @@ export class AppController {
     const avatar = await this.avatarService.avatar(account.toLowerCase(), query)
 
     res.send(avatar)
+  }
+
+  @Get('/resolve/:account')
+  @Header('Cache-Control', `public, max-age=${TIME_1H}`)
+  async resolve (@Param('account') account: string) {
+    return await this.avatarService.resolve(account)
   }
 
   @Get('/card/bestdas/:account')

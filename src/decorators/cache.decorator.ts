@@ -24,7 +24,7 @@ interface LocalCacheConfig {
 /**
  * Memory cache
  * @param key
- * @param ttl
+ * @param ttl seconds
  * @constructor
  */
 export function Cache ({ key, ttl }: CacheConfig = { ttl: 10 }) {
