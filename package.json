@@ -26,6 +26,7 @@
     "@bitgo/blake2b": "^3.0.1",
     "@ethersproject/bignumber": "^5.6.0",
     "@ethersproject/bytes": "^5.6.1",
+    "@ethersproject/strings": "^5.6.0",
     "@ethersproject/web": "^5.6.0",
     "@nestjs/common": "^7.6.13",
     "@nestjs/core": "^7.6.13",

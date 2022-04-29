@@ -18,6 +18,7 @@ pipeline:
     target: /data/code/identicons
     script:
       - cd /data/code/identicons
+      - npm install
       - npm run build
       - npm run reload_production
     when:
