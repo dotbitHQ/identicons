@@ -241,7 +241,7 @@ export class AvatarService {
       return {
         linkage: [{
           type: 'account',
-          content: 'phone.bit',
+          content: accountName,
         }, {
           type: 'fallback',
           content: 'identicon',
