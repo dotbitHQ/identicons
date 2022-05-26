@@ -1,0 +1,44 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="account_image_500px">
+        <rect width="500" height="500" fill="#121314"/>
+        <g id="bg color">
+            <rect id="rounded_square" x="12" y="12" width="476" height="400" rx="16" fill="#44DEDE"/>
+            <rect id="avatar" x="197.5" y="62.5" width="102" height="102" rx="52.5" fill="url(#avatarImagePattern)" stroke="white" stroke-width="3"/>
+            <g id="account">
+                <g id="suffix">
+                    <rect id="account_suffix_container" x="167" y="300" width="166" height="67" rx="33.5" fill="#121314" fill-opacity="0.08"/>
+                    <text id="account_suffix" x="205" y="353" fill="white" xml:space="preserve" style="white-space: pre;" font-size="56" font-weight="900" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'"><tspan>.bit</tspan></text>
+                </g>
+            </g>
+        </g>
+        <g id="Info">
+            <g id="bit-logo">
+                <g id="Group">
+                    <g id="Group_2">
+                        <path id="Vector" d="M43.9785 461.714C48.2999 461.714 51.8356 458.179 51.8356 453.857C51.8356 452.05 51.2856 450.479 50.2642 449.143C51.2071 448.436 51.8356 447.257 51.8356 446H43.9785C39.6571 446 36.1213 449.536 36.1213 453.857C36.1213 458.179 39.6571 461.714 43.9785 461.714ZM43.9785 449.614C46.3356 449.614 48.2213 451.5 48.2213 453.857C48.2213 456.214 46.3356 458.1 43.9785 458.1C41.6213 458.1 39.7356 456.214 39.7356 453.857C39.7356 451.5 41.6213 449.614 43.9785 449.614Z" fill="#00DF9B"/>
+                        <path id="Vector_2" d="M54.0358 463.836C53.5643 462.658 52.6215 461.793 51.3643 461.4C49.3215 463.365 46.65 464.386 44.0572 464.386C41.3858 464.386 38.7929 463.365 36.75 461.4C35.4929 461.793 34.55 462.658 34.0786 463.836C36.75 466.586 40.3643 468 43.9786 468C47.5929 468 51.2072 466.586 54.0358 463.836Z" fill="#2471FE"/>
+                    </g>
+                    <g id="Group_3">
+                        <path id="Vector_3" d="M78.4712 448.592C77.4498 448.592 76.7427 449.299 76.7427 450.32C76.7427 451.342 77.4498 452.049 78.4712 452.049C79.4927 452.049 80.1998 451.342 80.1998 450.32C80.1998 449.299 79.4927 448.592 78.4712 448.592Z" fill="white"/>
+                        <path id="Vector_4" d="M60.2427 464.621C61.1974 464.621 61.9713 463.847 61.9713 462.893C61.9713 461.938 61.1974 461.164 60.2427 461.164C59.2881 461.164 58.5142 461.938 58.5142 462.893C58.5142 463.847 59.2881 464.621 60.2427 464.621Z" fill="white"/>
+                        <path id="Vector_5" d="M70.1427 453.148C69.1999 453.148 68.3356 453.463 67.5499 454.013C67.5499 451.813 67.5499 449.377 67.5499 449.377C66.607 448.906 65.507 448.906 64.4856 449.377V464.463C65.4285 464.934 66.607 464.934 67.5499 464.463V463.834C68.257 464.384 69.1999 464.698 70.1427 464.698C71.7142 464.698 73.1285 463.913 73.9142 462.498C74.4642 461.556 74.6999 460.377 74.6999 458.963C74.6999 457.548 74.3856 456.37 73.9142 455.427C73.1285 454.013 71.7927 453.148 70.1427 453.148ZM69.5927 462.027C68.1785 462.027 67.5499 460.613 67.5499 458.884C67.5499 457.156 68.1785 455.741 69.5927 455.741C71.007 455.741 71.6356 457.313 71.6356 458.884C71.6356 460.456 71.007 462.027 69.5927 462.027Z" fill="white"/>
+                        <path id="Vector_6" d="M76.8999 453.463V464.384C77.8428 464.856 79.0213 464.856 79.9642 464.384V453.463C79.0213 452.992 77.9213 452.992 76.8999 453.463Z" fill="white"/>
+                        <path id="Vector_7" d="M88.6856 461.95H87.507C87.0356 461.95 86.6427 461.557 86.6427 461.085V455.821C87.507 455.821 88.607 455.821 88.607 455.821C88.9999 455.035 88.9999 454.171 88.607 453.385H86.6427V450.557C85.6999 450.085 84.5999 450.085 83.5784 450.557V453.307H81.8499C81.457 454.092 81.457 454.957 81.8499 455.742C81.8499 455.742 82.9499 455.742 83.5784 455.742V462.028C83.5784 463.835 84.757 464.542 87.0356 464.542C88.057 464.542 88.6856 464.464 88.6856 464.464C89.0785 463.757 89.0785 462.735 88.6856 461.95Z" fill="white"/>
+                    </g>
+                </g>
+            </g>
+            <text id="Web3.0 Identity" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'"><tspan x="250" y="462.688">DID (Decentralized Identity)</tspan></text>
+        </g>
+    </g>
+
+    <defs>
+        <pattern id="avatarImagePattern" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#avatarImage" transform="scale(0.003125)"/>
+        </pattern>
+        <linearGradient id="paint0_linear_379_7498" x1="12" y1="12" x2="558.621" y2="174.62" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A1FFCD" stop-opacity="0.96"/>
+            <stop offset="1" stop-color="#9AF785"/>
+        </linearGradient>
+        <image id="avatarImage" data-name="avatar-11.png" width="320" height="320"/>
+    </defs>
+</svg>

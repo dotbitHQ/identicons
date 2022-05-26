@@ -156,7 +156,7 @@ function getFigurePaths (domainMd5: string): number[] {
 @Injectable()
 export class AppService {
   @Cache({ ttl: TIME_30D })
-  async seo(account: string, saleTag?: boolean): Promise<Buffer> {
+  async seo (account: string, saleTag?: boolean): Promise<Buffer> {
     const width = 900
     const height = 473
     const widthCenter = width / 2
@@ -224,7 +224,7 @@ export class AppService {
     drawRoundImage(snapshotCanvasCtx, avatarCanvas, 395, 50, 110)
 
     const accountArray = account.split('.')
-    const accountName= accountArray[0]
+    const accountName = accountArray[0]
     let fontSize = 76
     if (accountName.length >= 32) {
       fontSize = 26
@@ -261,7 +261,7 @@ export class AppService {
   }
 
   @Cache({ ttl: TIME_30D })
-  async identiconBuffer(account: string): Promise<Buffer> {
+  async identiconBuffer (account: string): Promise<Buffer> {
     const canvas = await this.identicon(account)
     return canvas.toBuffer()
   }
