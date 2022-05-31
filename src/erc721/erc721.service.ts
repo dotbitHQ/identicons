@@ -185,6 +185,10 @@ export class Erc721Service {
         trait_type: 'Expiration Date',
         value: expireAt.toNumber() * 1000 // seconds to milliseconds
       }, {
+        display_type: 'date',
+        trait_type: 'Registration Date',
+        value: account.create_at_unix * 1000,
+      }, {
         display_type: 'number',
         trait_type: 'Length',
         value: name.length
