@@ -177,9 +177,9 @@ export class Erc721Service {
 
     return {
       name: account.account,
-      description: `${account.account}, a decentralized identity in Web3.0. https://did.id`,
+      description: `${account.account}, Web3.0 identity for you and your community.\n https://did.id`,
       image: `https://display.did.id/erc721/card/${tokenId}`,
-      external_url: `https://${account.account}.cc`,
+      external_url: 'https://did.id',
       attributes: [{
         display_type: 'date',
         trait_type: 'Expiration Date',
