@@ -5,6 +5,7 @@ import { ethers } from 'ethers'
 import * as fs from 'fs'
 import path from 'path'
 import { AppService } from '../app.service'
+import { getCharacterSet } from '../modules/tools'
 import abi from './abi.json'
 const cheerio = require('cheerio') // requiring in cjs to avoid ts error
 
@@ -181,17 +182,21 @@ export class Erc721Service {
       image: `https://display.did.id/erc721/card/${tokenId}`,
       external_url: 'https://did.id',
       attributes: [{
-        display_type: 'date',
         trait_type: 'Expiration Date',
+        display_type: 'date',
         value: expireAt.toNumber() * 1000 // seconds to milliseconds
       }, {
-        display_type: 'date',
         trait_type: 'Registration Date',
+        display_type: 'date',
         value: account.create_at_unix * 1000,
       }, {
-        display_type: 'number',
         trait_type: 'Length',
+        display_type: 'number',
         value: name.length
+      }, {
+        trait_type: 'Character Set',
+        display_type: 'string',
+        value: getCharacterSet(name),
       }],
     }
   }
