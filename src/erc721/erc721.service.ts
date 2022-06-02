@@ -195,7 +195,6 @@ export class Erc721Service {
         value: name.length
       }, {
         trait_type: 'Character Set',
-        display_type: 'string',
         value: getCharacterSet(name),
       }],
     }
