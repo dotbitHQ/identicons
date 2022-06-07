@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import * as fs from 'fs'
 import path from 'path'
 import { AppService } from '../app.service'
-import { getCharacterSet } from '../modules/tools'
+import { getCharacterSet, tokenIdToAccountId } from '../modules/tools'
 import abi from './abi.json'
 const cheerio = require('cheerio') // requiring in cjs to avoid ts error
 
@@ -170,8 +170,8 @@ export class Erc721Service {
   }
 
   async erc721Metadata (tokenId: string) {
-    const tokenIdHex = '0x' + BigInt(tokenId).toString(16)
-    const account = await das.accountById(tokenIdHex)
+    const accountId = tokenIdToAccountId(tokenId)
+    const account = await das.accountById(accountId)
     const name = account.account.replace(/\.bit$/, '')
 
     const expireAt = await contract.getExpires(account.account_id_hex)
@@ -208,8 +208,8 @@ export class Erc721Service {
       account = tokenId
     }
     else {
-      const tokenIdHex = '0x' + BigInt(tokenId).toString(16)
-      const accountInfo = await das.accountById(tokenIdHex)
+      const accountId = tokenIdToAccountId(tokenId)
+      const accountInfo = await das.accountById(accountId)
       account = accountInfo.account
     }
 

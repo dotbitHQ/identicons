@@ -29,3 +29,11 @@ export function getCharacterSet (label: string): CharacterSet {
 
   return CharacterSet.MIXED
 }
+
+/**
+ * Transform digital tokenId to hex accountId
+ * @param tokenId
+ */
+export function tokenIdToAccountId (tokenId: string): string {
+  return '0x' + BigInt(tokenId).toString(16).padStart(40, '0')
+}
