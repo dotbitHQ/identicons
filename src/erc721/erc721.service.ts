@@ -178,7 +178,7 @@ export class Erc721Service {
 
     return {
       name: account.account,
-      description: `${account.account}, Web3.0 identity for you and your community.\n https://did.id`,
+      description: `${account.account}, Web3.0 identity for you and your community.\n https://did.id\n More about ${account.account}: https://bit.ly/3te6SOP`,
       image: `https://display.did.id/erc721/card/${tokenId}`,
       external_url: 'https://did.id',
       attributes: [{
