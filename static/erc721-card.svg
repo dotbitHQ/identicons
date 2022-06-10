@@ -9,7 +9,7 @@
                     <rect id="account_suffix_container" x="167" y="300" width="166" height="67" rx="33.5" fill="#121314" fill-opacity="0.08"/>
                 </g>
                 <g>
-                    <text id="account_suffix" x="205" y="353" fill="white" font-size="56" font-weight="900" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'"><tspan>.bit</tspan></text>
+                    <text id="account_suffix" x="205" y="353" fill="white" font-size="56" font-weight="900" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif"><tspan>.bit</tspan></text>
                 </g>
             </g>
         </g>
@@ -29,7 +29,7 @@
                     </g>
                 </g>
             </g>
-            <text id="Web3.0 Identity" x="350" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'">
+            <text id="Web3.0 Identity" x="350" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
                 <tspan>Web3.0 Identity</tspan>
             </text>
         </g>
