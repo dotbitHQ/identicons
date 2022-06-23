@@ -247,10 +247,10 @@ export class AvatarService {
           content: 'identicon',
         }, {
           type: 'url',
-          content: `https://identicons.did.id/identicon/${accountName}`
+          content: `https://display.did.id/identicon/${accountName}`
         }],
-        // url: `https://identicons.did.id/avatar/${accountName}`,
-        url: `https://identicons.did.id/identicon/${accountName}`
+        // url: `https://display.did.id/avatar/${accountName}`,
+        url: `https://display.did.id/identicon/${accountName}`
       }
     }
 
