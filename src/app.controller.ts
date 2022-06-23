@@ -47,7 +47,19 @@ export class AppController {
     res.send(seo)
   }
 
-  @Get('/avatar/:account')
+  @Get([
+    '/resolve/:account',  // todo: remove this legacy endpoint one day
+    '/avatar/resolve/:account',
+  ])
+  @Header('Cache-Control', `public, max-age=${TIME_1H}`)
+  async resolve (@Param('account') account: string) {
+    return await this.avatarService.resolve(account)
+  }
+
+  @Get([
+    '/avatar/:account', // todo: remove this legacy endpoint one day
+    '/avatar/image/:account',
+  ])
   @Header('content-type', 'image/png')
   @Header('accept-ranges', 'bytes')
   @Header('Cache-Control', `public, max-age=${TIME_30D}`)
@@ -55,13 +67,6 @@ export class AppController {
     const avatar = await this.avatarService.avatar(account.toLowerCase(), query)
 
     res.send(avatar)
-  }
-
-  @Get('/resolve/:account') // todo: remove this legacy endpoint one day
-  @Get('/avatar/resolve/:account')
-  @Header('Cache-Control', `public, max-age=${TIME_1H}`)
-  async resolve (@Param('account') account: string) {
-    return await this.avatarService.resolve(account)
   }
 
   @Get('/erc721/card/test')
