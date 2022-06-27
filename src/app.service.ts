@@ -9,6 +9,7 @@ import { Scene, Rect, Path, Sprite, Ring, ENV } from 'spritejs/lib'
 import { TIME_30D } from './constants/index'
 import { Cache } from './decorators/cache.decorator'
 import { accountColor } from 'das-ui-shared'
+import Das from 'das-sdk'
 
 polyfill({ ENV })
 
@@ -223,7 +224,7 @@ export class AppService {
     const avatarCanvas = await this.identicon(account)
     drawRoundImage(snapshotCanvasCtx, avatarCanvas, 395, 50, 110)
 
-    const accountArray = account.split('.')
+    const accountArray = Das.toHashedStyle(account).split('.')
     const accountName = accountArray[0]
     let fontSize = 76
     if (accountName.length >= 32) {
