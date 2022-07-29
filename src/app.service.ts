@@ -224,8 +224,9 @@ export class AppService {
     const avatarCanvas = await this.identicon(account)
     drawRoundImage(snapshotCanvasCtx, avatarCanvas, 395, 50, 110)
 
-    const accountArray = Das.toHashedStyle(account).split('.')
-    const accountName = accountArray[0]
+    // const accountArray = Das.toHashedStyle(account).split('.')
+    // const accountName = accountArray[0]
+    const accountName = account.replace('.bit', '')
     let fontSize = 76
     if (accountName.length >= 32) {
       fontSize = 26
