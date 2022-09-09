@@ -29,8 +29,8 @@
                     </g>
                 </g>
             </g>
-            <text id="Web3.0 Identity" x="350" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
-                <tspan>Web3.0 Identity</tspan>
+            <text id="Web3 Identity" x="350" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
+                <tspan>Web3 Identity</tspan>
             </text>
         </g>
     </g>
