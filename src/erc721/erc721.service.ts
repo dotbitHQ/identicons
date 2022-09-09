@@ -200,7 +200,7 @@ export class Erc721Service {
     }
   }
 
-  async erc721Card (tokenId: string) {
+  async erc721Card (tokenId: string, textDesc = 'Web3 Identity', textLoc: string) {
     let account = ''
 
     // we can handle both account and account_id here
@@ -226,6 +226,9 @@ export class Erc721Service {
     $('#account').prepend($nameText)
     $('#avatarImage').attr('xlink:href', `data:image/png;base64,${avatar}`)
     $('#rounded_square').attr('fill', color.color)
+
+    $('#text-desc').text(textDesc)
+    $('#text-loc').text(textLoc)
 
     return $('body').html()
   }

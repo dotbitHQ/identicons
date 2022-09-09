@@ -86,8 +86,8 @@ export class AppController {
   @Header('content-type', 'image/svg+xml')
   @Header('Cache-Control', `public, max-age=${TIME_10S}`)
   // @Header('cache-control', `public, max-age=${TIME_30D}`)
-  async erc721Card (@Res() res: Response, @Param('tokenId') tokenId: string): Promise<void> {
-    const cardBuffer = await this.erc721Service.erc721Card(tokenId.toLowerCase())
+  async erc721Card (@Res() res: Response, @Param('tokenId') tokenId: string, @Query('desc') textDesc: string, @Query('loc') textLoc: string): Promise<void> {
+    const cardBuffer = await this.erc721Service.erc721Card(tokenId.toLowerCase(), textDesc, textLoc)
 
     res.send(cardBuffer)
   }

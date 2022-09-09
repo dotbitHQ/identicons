@@ -29,8 +29,11 @@
                     </g>
                 </g>
             </g>
-            <text id="Web3 Identity" x="350" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
-                <tspan>Web3 Identity</tspan>
+            <text id="Web3 Identity" x="100" y="464" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
+                <tspan id="text-loc"></tspan>
+            </text>
+            <text id="Web3 Identity" x="360" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
+                <tspan id="text-desc">Web3 Identity</tspan>
             </text>
         </g>
     </g>
