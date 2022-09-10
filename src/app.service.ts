@@ -349,7 +349,6 @@ export class AppService {
     return snapshotCanvas
   }
 
-  @Cache({ ttl: TIME_30D })
   async bestDasCard (account: string) {
     const url = `bestdas.com/account/${account}`
 
@@ -362,7 +361,6 @@ export class AppService {
     return buffer
   }
 
-  @Cache({ ttl: TIME_30D })
   async bitccCard (account: string, referer: string) {
     let url = `${account}.cc`
 
