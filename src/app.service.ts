@@ -7,7 +7,7 @@ import md5 from 'blueimp-md5'
 import { polyfill } from 'spritejs/lib/platform/node-canvas'
 import { Scene, Rect, Path, Sprite, Ring, ENV } from 'spritejs/lib'
 import { TIME_30D } from './constants/index'
-import { Cache } from './decorators/cache.decorator'
+import { Cache, LocalCache } from './decorators/cache.decorator'
 import { accountColor } from 'das-ui-shared'
 import Das from 'das-sdk'
 
@@ -156,7 +156,10 @@ function getFigurePaths (domainMd5: string): number[] {
 
 @Injectable()
 export class AppService {
-  @Cache({ ttl: TIME_30D })
+  @LocalCache({
+    dir: 'seo-card',
+    key: (account: string, saleTag?: boolean) => `${account}.${saleTag ? '1' : '0'}.jpg`
+  })
   async seo (account: string, saleTag?: boolean): Promise<Buffer> {
     const width = 900
     const height = 473
@@ -262,7 +265,10 @@ export class AppService {
     return snapshotCanvas.toBuffer()
   }
 
-  @Cache({ ttl: TIME_30D })
+  @LocalCache({
+    dir: 'identicon',
+    key: (account: string, saleTag?: boolean) => `${account}.jpg`
+  })
   async identiconBuffer (account: string): Promise<Buffer> {
     const canvas = await this.identicon(account)
     return canvas.toBuffer()
@@ -373,6 +379,10 @@ export class AppService {
     return buffer
   }
 
+  @LocalCache({
+    dir: 'card-legacy',
+    key: (account: string) => `${account}.jpg`
+  })
   async card (
     account: string,
     title: string,
