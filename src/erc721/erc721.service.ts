@@ -170,9 +170,15 @@ export class Erc721Service {
   ) {
   }
 
+  @LocalCache({
+    dir: 'erc721Metadata',
+    key: function (tokenId: string) {
+      return `${tokenId}.json`
+    }
+  })
   async erc721Metadata (tokenId: string) {
-    if (!tokenId.match(/^\d{48,49}$/)) {
-      return
+    if (!tokenId.match(/^\d{30,50}$/)) {
+      throw new Error(`${tokenId} is not valid`)
     }
     const accountId = tokenIdToAccountId(tokenId)
     const account = await das.accountById(accountId)
@@ -180,7 +186,7 @@ export class Erc721Service {
 
     const expireAt = await contract.getExpires(account.account_id_hex)
 
-    return {
+    return JSON.stringify({
       name: account.account,
       description: `${account.account}, Web3 identity for you and your community.\n https://did.id\n More about ${account.account}: https://bit.ly/3te6SOP`,
       image: `https://display.did.id/erc721/card/${tokenId}`,
@@ -201,7 +207,7 @@ export class Erc721Service {
         trait_type: 'Character Set',
         value: getCharacterSet(name),
       }],
-    }
+    })
   }
 
   @LocalCache({

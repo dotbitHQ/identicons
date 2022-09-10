@@ -78,7 +78,7 @@ export class AppController {
   // @Header('Cache-Control', `public, max-age=${TIME_10S}`)
   @Header('Cache-Control', `public, max-age=${TIME_1D}`)
   async erc721Metadata (@Param('tokenId') tokenId: string) {
-    const res = await this.erc721Service.erc721Metadata(tokenId)
+    const res = JSON.parse(await this.erc721Service.erc721Metadata(tokenId))
     return res
   }
 
