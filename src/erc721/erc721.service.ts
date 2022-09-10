@@ -171,6 +171,9 @@ export class Erc721Service {
   }
 
   async erc721Metadata (tokenId: string) {
+    if (!tokenId.match(/^\d{48,49}$/)) {
+      return
+    }
     const accountId = tokenIdToAccountId(tokenId)
     const account = await das.accountById(accountId)
     const name = account.account.replace(/\.bit$/, '')

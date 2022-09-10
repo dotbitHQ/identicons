@@ -74,13 +74,13 @@ export class AppController {
     return this.erc721Service.test()
   }
 
-  // @Get('/erc721/data/:tokenId')
-  // // @Header('Cache-Control', `public, max-age=${TIME_10S}`)
-  // @Header('Cache-Control', `public, max-age=${TIME_1D}`)
-  // async erc721Metadata (@Param('tokenId') tokenId: string) {
-  //   const res = await this.erc721Service.erc721Metadata(tokenId)
-  //   return res
-  // }
+  @Get('/erc721/data/:tokenId')
+  // @Header('Cache-Control', `public, max-age=${TIME_10S}`)
+  @Header('Cache-Control', `public, max-age=${TIME_1D}`)
+  async erc721Metadata (@Param('tokenId') tokenId: string) {
+    const res = await this.erc721Service.erc721Metadata(tokenId)
+    return res
+  }
 
   @Get('/erc721/card/:tokenId')
   @Header('content-type', 'image/svg+xml')
