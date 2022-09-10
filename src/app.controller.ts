@@ -2,7 +2,7 @@ import { Controller, Get, Head, Header, Headers, Param, Query, Res } from '@nest
 import { Response } from 'express'
 import { AppService } from './app.service'
 import { AvatarOptions, AvatarService } from './avatar.service'
-import { TIME_10S, TIME_1H, TIME_30D } from './constants/index'
+import { TIME_10S, TIME_1D, TIME_1H, TIME_30D } from './constants/index'
 import { Erc721Service } from './erc721/erc721.service'
 
 @Controller()
@@ -75,8 +75,8 @@ export class AppController {
   }
 
   @Get('/erc721/data/:tokenId')
-  @Header('Cache-Control', `public, max-age=${TIME_10S}`)
-  // @Header('Cache-Control', `public, max-age=${TIME_1D}`)
+  // @Header('Cache-Control', `public, max-age=${TIME_10S}`)
+  @Header('Cache-Control', `public, max-age=${TIME_1D}`)
   async erc721Metadata (@Param('tokenId') tokenId: string) {
     const res = await this.erc721Service.erc721Metadata(tokenId)
     return res
@@ -84,8 +84,8 @@ export class AppController {
 
   @Get('/erc721/card/:tokenId')
   @Header('content-type', 'image/svg+xml')
-  @Header('Cache-Control', `public, max-age=${TIME_10S}`)
-  // @Header('cache-control', `public, max-age=${TIME_30D}`)
+  // @Header('Cache-Control', `public, max-age=${TIME_10S}`)
+  @Header('cache-control', `public, max-age=${TIME_30D}`)
   async erc721Card (@Res() res: Response, @Param('tokenId') tokenId: string, @Query('desc') textDesc: string, @Query('loc') textLoc: string): Promise<void> {
     const cardBuffer = await this.erc721Service.erc721Card(tokenId.toLowerCase(), textDesc, textLoc)
 

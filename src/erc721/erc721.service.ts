@@ -171,9 +171,7 @@ export class Erc721Service {
 
   async erc721Metadata (tokenId: string) {
     const accountId = tokenIdToAccountId(tokenId)
-    console.log('erc721metadata', tokenId, accountId)
     const account = await das.accountById(accountId)
-    console.log('erc721metadata', tokenId, accountId, 22222222222)
     const name = account.account.replace(/\.bit$/, '')
 
     const expireAt = await contract.getExpires(account.account_id_hex)
@@ -211,9 +209,7 @@ export class Erc721Service {
     }
     else {
       const accountId = tokenIdToAccountId(tokenId)
-      console.log('erc721card', tokenId, accountId)
       const accountInfo = await das.accountById(accountId)
-      console.log('erc721card', tokenId, accountId, 2222222222222)
       account = accountInfo.account
     }
 
