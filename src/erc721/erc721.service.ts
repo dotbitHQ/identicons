@@ -6,7 +6,7 @@ import * as fs from 'fs'
 import path from 'path'
 import { AppService } from '../app.service'
 import { LocalCache } from '../decorators/cache.decorator'
-import { getCharacterSet, tokenIdToAccountId } from '../modules/tools'
+import { getCategory, getCharacterSet, tokenIdToAccountId } from '../modules/tools'
 import abi from './abi.json'
 const cheerio = require('cheerio') // requiring in cjs to avoid ts error
 
@@ -173,9 +173,9 @@ export class Erc721Service {
   @LocalCache({
     dir: 'erc721Metadata',
     key: function (tokenId: string) {
-      return `${tokenId}.json`
+    return `${tokenId}.json`
     }
-  })
+    })
   async erc721Metadata (tokenId: string) {
     if (!tokenId.match(/^\d{30,50}$/)) {
       throw new Error(`${tokenId} is not valid`)
@@ -206,7 +206,7 @@ export class Erc721Service {
       }, {
         trait_type: 'Character Set',
         value: getCharacterSet(name),
-      }],
+      }, ...getCategory(name)],
     })
   }
 
