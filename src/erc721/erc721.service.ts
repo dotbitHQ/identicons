@@ -173,7 +173,7 @@ export class Erc721Service {
   @LocalCache({
     dir: 'erc721Metadata',
     key: function (tokenId: string) {
-    return `${tokenId}.json`
+      return `${tokenId}.json`
     }
     })
   async erc721Metadata (tokenId: string) {
@@ -213,9 +213,9 @@ export class Erc721Service {
   @LocalCache({
     dir: 'erc721card',
     key: function (tokenId: string) {
-      return `${tokenId}.${arguments.length}.svg`
+    return `${tokenId}.${arguments.length}.svg`
     }
-  })
+    })
   async erc721Card (tokenId: string, textDesc = 'Web3 Identity', textLoc: string) {
     let account = ''
 
@@ -248,7 +248,7 @@ export class Erc721Service {
     return $('body').html()
   }
 
-  test () {
+  async test () {
     return `
 <html>
   <body>

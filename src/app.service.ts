@@ -159,7 +159,7 @@ export class AppService {
   @LocalCache({
     dir: 'seo-card',
     key: (account: string, saleTag?: boolean) => `${account}.${saleTag ? '1' : '0'}.jpg`
-  })
+    })
   async seo (account: string, saleTag?: boolean): Promise<Buffer> {
     const width = 900
     const height = 473
@@ -268,7 +268,7 @@ export class AppService {
   @LocalCache({
     dir: 'identicon',
     key: (account: string, saleTag?: boolean) => `${account}.jpg`
-  })
+    })
   async identiconBuffer (account: string): Promise<Buffer> {
     const canvas = await this.identicon(account)
     return canvas.toBuffer()
@@ -380,7 +380,7 @@ export class AppService {
   @LocalCache({
     dir: 'card-legacy',
     key: (account: string) => `${account}.jpg`
-  })
+    })
   async card (
     account: string,
     title: string,

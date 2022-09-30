@@ -14,7 +14,7 @@ describe('get category', function () {
 
     expect(getCategory('123')).toEqual([{
       trait_type: '3D',
-      value: '999 club'
+      value: '999 Club'
     }])
 
     expect(getCategory('163')).toEqual([{
@@ -22,22 +22,22 @@ describe('get category', function () {
       value: 'Lucky'
     }, {
       trait_type: '3D',
-      value: '999 club'
+      value: '999 Club'
     }])
   })
 
   it('4D should work', function () {
     expect(getCategory('0994')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }])
 
     expect(getCategory('1638')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: 'Lucky'
     }, {
       trait_type: '4D',
-      value: 'Lucky'
+      value: '10k Club'
     }])
 
     expect(getCategory('0x2433')).toEqual([{
@@ -47,7 +47,7 @@ describe('get category', function () {
 
     expect(getCategory('5977')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'ABCC'
@@ -55,7 +55,7 @@ describe('get category', function () {
 
     expect(getCategory('0129')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'MMDD'
@@ -63,7 +63,7 @@ describe('get category', function () {
 
     expect(getCategory('3345')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'AABC'
@@ -71,7 +71,7 @@ describe('get category', function () {
 
     expect(getCategory('3343')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'AABA'
@@ -79,7 +79,7 @@ describe('get category', function () {
 
     expect(getCategory('2333')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'ABBB'
@@ -87,7 +87,7 @@ describe('get category', function () {
 
     expect(getCategory('2223')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'AAAB'
@@ -95,7 +95,7 @@ describe('get category', function () {
 
     expect(getCategory('2233')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'AABB'
@@ -103,7 +103,7 @@ describe('get category', function () {
 
     expect(getCategory('7977')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'ABAA'
@@ -111,7 +111,7 @@ describe('get category', function () {
 
     expect(getCategory('5757')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'ABAB'
@@ -119,7 +119,7 @@ describe('get category', function () {
 
     expect(getCategory('9009')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'ABBA'
@@ -127,18 +127,18 @@ describe('get category', function () {
 
     expect(getCategory('1234')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'ABCD'
     }])
 
-    expect(getCategory('8765')).toEqual([ {
+    expect(getCategory('8765')).toEqual([{
       trait_type: '4D',
       value: 'Lucky'
     }, {
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'DCBA'
@@ -146,7 +146,7 @@ describe('get category', function () {
 
     expect(getCategory('5555')).toEqual([{
       trait_type: '4D',
-      value: '10k club'
+      value: '10k Club'
     }, {
       trait_type: '4D',
       value: 'AAAA'
@@ -156,7 +156,7 @@ describe('get category', function () {
   it('5D should work', function () {
     expect(getCategory('23790')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }])
 
     expect(getCategory('18234')).toEqual([{
@@ -164,7 +164,7 @@ describe('get category', function () {
       value: 'Lucky'
     }, {
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }])
 
     expect(getCategory('0x24336')).toEqual([{
@@ -174,7 +174,7 @@ describe('get category', function () {
 
     expect(getCategory('12223')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABBBC'
@@ -182,7 +182,7 @@ describe('get category', function () {
 
     expect(getCategory('33321')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'AAABC'
@@ -190,7 +190,7 @@ describe('get category', function () {
 
     expect(getCategory('34543')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABCBA'
@@ -198,23 +198,15 @@ describe('get category', function () {
 
     expect(getCategory('90000')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABBBB'
     }])
 
-    expect(getCategory('11112')).toEqual([{
-      trait_type: '5D',
-      value: '100k club'
-    }, {
-      trait_type: '5D',
-      value: 'AAAAB'
-    }])
-
     expect(getCategory('11222')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'AABBB'
@@ -222,7 +214,7 @@ describe('get category', function () {
 
     expect(getCategory('13111')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABAAA'
@@ -230,7 +222,7 @@ describe('get category', function () {
 
     expect(getCategory('19991')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABBBA'
@@ -238,7 +230,7 @@ describe('get category', function () {
 
     expect(getCategory('09777')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABCCC'
@@ -246,7 +238,7 @@ describe('get category', function () {
 
     expect(getCategory('12121')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABABA'
@@ -254,7 +246,7 @@ describe('get category', function () {
 
     expect(getCategory('11121')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'AAABA'
@@ -262,15 +254,7 @@ describe('get category', function () {
 
     expect(getCategory('11122')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
-    }, {
-      trait_type: '5D',
-      value: 'AAABB'
-    }])
-
-    expect(getCategory('11122')).toEqual([{
-      trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'AAABB'
@@ -278,7 +262,7 @@ describe('get category', function () {
 
     expect(getCategory('99999')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'AAAAA'
@@ -286,7 +270,7 @@ describe('get category', function () {
 
     expect(getCategory('99299')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'AABAA'
@@ -294,7 +278,7 @@ describe('get category', function () {
 
     expect(getCategory('12345')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'ABCDE'
@@ -302,7 +286,7 @@ describe('get category', function () {
 
     expect(getCategory('54321')).toEqual([{
       trait_type: '5D',
-      value: '100k club'
+      value: '100k Club'
     }, {
       trait_type: '5D',
       value: 'EDCBA'
@@ -353,11 +337,6 @@ describe('get category', function () {
     expect(getCategory('pooop')).toEqual([{
       trait_type: 'Letter',
       value: 'ABBBA'
-    }])
-
-    expect(getCategory('fringe')).toEqual([{
-      trait_type: 'Letter',
-      value: 'Word6L'
     }])
 
     expect(getCategory('fringe')).toEqual([{

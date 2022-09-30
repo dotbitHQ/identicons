@@ -50,8 +50,10 @@ export function getCategory (name: string) {
   }
   // 3D account
   if (name.length === 3 && /^\d+$/.test(name)) {
-    const category = { trait_type: '3D', value: '999 club' }
-    categories.push(category)
+    categories.push({
+      trait_type: '3D',
+      value: '999 Club'
+    })
     return categories
   }
 
@@ -64,9 +66,10 @@ export function getCategory (name: string) {
 
   // 4D account
   if (name.length === 4 && /^\d+$/.test(name)) {
-    const category = { trait_type: '4D', value: '' }
-    category.value = '10k club'
-    categories.push(category)
+    categories.push({
+      trait_type: '4D',
+      value: '10k Club'
+    })
 
     const values = ['AAAA', 'ABBB', 'AAAB', 'AABA', 'ABAA', 'AABB', 'ABAB', 'ABBA', 'AABC', 'ABCC']
     const value = getReduplicationValue(values, name)
@@ -88,7 +91,7 @@ export function getCategory (name: string) {
     }
 
     // ABCD
-    if (isContinus(name, false)) {
+    if (isContinuous(name, 1)) {
       categories.push({
         trait_type: '4D',
         value: 'ABCD'
@@ -96,7 +99,7 @@ export function getCategory (name: string) {
     }
 
     // DCBA
-    if (isContinus(name, true)) {
+    if (isContinuous(name, -1)) {
       categories.push({
         trait_type: '4D',
         value: 'DCBA'
@@ -114,7 +117,7 @@ export function getCategory (name: string) {
 
   // 5D account
   if (name.length === 5 && /^\d+$/.test(name)) {
-    const category = { trait_type: '5D', value: '100k club' }
+    const category = { trait_type: '5D', value: '100k Club' }
     categories.push(category)
     const values = ['AAAAA', 'AABAA', 'ABBBB', 'AAAAB', 'ABAAA', 'AAABB', 'AABBB', 'AAABA', 'ABBBA', 'ABCCC', 'ABBBC', 'AAABC', 'ABABA', 'ABCBA']
     const value = getReduplicationValue(values, name)
@@ -126,7 +129,7 @@ export function getCategory (name: string) {
     }
 
     // ABCDE
-    if (isContinus(name, false)) {
+    if (isContinuous(name, 1)) {
       categories.push({
         trait_type: '5D',
         value: 'ABCDE'
@@ -134,7 +137,7 @@ export function getCategory (name: string) {
     }
 
     // EDCBA
-    if (isContinus(name, true)) {
+    if (isContinuous(name, -1)) {
       categories.push({
         trait_type: '5D',
         value: 'EDCBA'
@@ -168,12 +171,12 @@ export function getCategory (name: string) {
     }
     return categories
   }
-  return []
+  return categories
 }
 
-function isContinus (str: string, descend: boolean): boolean {
+function isContinuous (str: string, step = 1): boolean {
   for (let i = 1; i < str.length; i++) {
-    if (str.charCodeAt(i) !== (str.charCodeAt(i - 1) + (descend ? -1 : 1))) {
+    if (str.charCodeAt(i) !== (str.charCodeAt(i - 1) + step)) {
       return false
     }
   }
@@ -183,6 +186,8 @@ function isContinus (str: string, descend: boolean): boolean {
 function getReduplicationValue (values: string[], name: string) {
   for (const value of values) {
     const used = new Map()
+    // This is a regex syntax using Named Capture Group.
+    // For more details, see https://github.com/tc39/proposal-regexp-named-groups.
     const reg = value.split('').reduce((pre, next) => {
       if (!used.has(next)) {
         used.set(next, 1)

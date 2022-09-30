@@ -8,5 +8,5 @@ import { Erc721Service } from './erc721/erc721.service'
   imports: [],
   controllers: [AppController],
   providers: [AppService, AvatarService, Erc721Service]
-})
+  })
 export class AppModule {}

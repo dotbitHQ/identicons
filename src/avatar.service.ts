@@ -202,7 +202,7 @@ export class AvatarService {
   @LocalCache({
     dir: 'avatar',
     key: (account: string, options: AvatarOptions = {}) => `${account}.${options.size || AvatarSize.md}.jpg`
-  })
+    })
   async avatar (account: string, options: AvatarOptions = {}): Promise<Buffer> {
     const name = account.replace(/\.bit$/, '')
     const hash = blake2bHash(name)
