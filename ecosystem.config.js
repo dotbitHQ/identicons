@@ -1,14 +1,14 @@
 const packageJson = require('./package.json')
 const config = require('./config')
 
-function generateApp(env, port) {
+function generateApp (env, port) {
   const isProd = env === 'production'
   const appName = isProd ? packageJson.name : `${packageJson.name}_${env}`
 
   return {
     name: appName,
     script: 'dist/main.js',
-    instances: isProd ? 1 : 1,
+    instances: isProd ? 2 : 1,
     exec_mode: 'cluster',
     watch: false,
     error_file: `logs/${appName}.stderr.log'`,
