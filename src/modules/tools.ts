@@ -68,7 +68,7 @@ export function getCategory (name: string) {
   if (name.length === 4 && /^\d+$/.test(name)) {
     categories.push({
       trait_type: '4D',
-      value: '10k Club'
+      value: '10K Club'
     })
 
     const values = ['AAAA', 'ABBB', 'AAAB', 'AABA', 'ABAA', 'AABB', 'ABAB', 'ABBA', 'AABC', 'ABCC']
@@ -111,13 +111,13 @@ export function getCategory (name: string) {
   if (name.length === 6 && name.startsWith('0x') && /^\d+$/.test(name.slice(2))) {
     return [{
       trait_type: '4D',
-      value: '0x10k'
+      value: '0x10K'
     }]
   }
 
   // 5D account
   if (name.length === 5 && /^\d+$/.test(name)) {
-    const category = { trait_type: '5D', value: '100k Club' }
+    const category = { trait_type: '5D', value: '100K Club' }
     categories.push(category)
     const values = ['AAAAA', 'AABAA', 'ABBBB', 'AAAAB', 'ABAAA', 'AAABB', 'AABBB', 'AAABA', 'ABBBA', 'ABCCC', 'ABBBC', 'AAABC', 'ABABA', 'ABCBA']
     const value = getReduplicationValue(values, name)
@@ -149,7 +149,7 @@ export function getCategory (name: string) {
   if (name.length === 7 && name.startsWith('0x') && /^\d+$/.test(name.slice(2))) {
     return [{
       trait_type: '5D',
-      value: '0x100k'
+      value: '0x100K'
     }]
   }
 
