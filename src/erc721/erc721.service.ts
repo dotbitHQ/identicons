@@ -6,7 +6,7 @@ import * as fs from 'fs'
 import path from 'path'
 import { AppService } from '../app.service'
 import { LocalCache } from '../decorators/cache.decorator'
-import { getCharacterSet, tokenIdToAccountId } from '../modules/tools'
+import { getCategory, getCharacterSet, tokenIdToAccountId } from '../modules/tools'
 import abi from './abi.json'
 const cheerio = require('cheerio') // requiring in cjs to avoid ts error
 
@@ -175,7 +175,7 @@ export class Erc721Service {
     key: function (tokenId: string) {
       return `${tokenId}.json`
     }
-  })
+    })
   async erc721Metadata (tokenId: string) {
     if (!tokenId.match(/^\d{30,50}$/)) {
       throw new Error(`${tokenId} is not valid`)
@@ -206,16 +206,16 @@ export class Erc721Service {
       }, {
         trait_type: 'Character Set',
         value: getCharacterSet(name),
-      }],
+      }, ...getCategory(name)],
     })
   }
 
   @LocalCache({
     dir: 'erc721card',
     key: function (tokenId: string) {
-      return `${tokenId}.${arguments.length}.svg`
+    return `${tokenId}.${arguments.length}.svg`
     }
-  })
+    })
   async erc721Card (tokenId: string, textDesc = 'Web3 Identity', textLoc: string) {
     let account = ''
 
@@ -248,7 +248,7 @@ export class Erc721Service {
     return $('body').html()
   }
 
-  test () {
+  async test () {
     return `
 <html>
   <body>
