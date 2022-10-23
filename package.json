@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build --path tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -33,7 +33,7 @@
     "@nestjs/platform-express": "^7.6.13",
     "blueimp-md5": "^2.18.0",
     "cache-manager": "^3.4.1",
-    "canvas": "^2.10.1",
+    "canvas": "2.6.1",
     "cheerio": "^1.0.0-rc.11",
     "das-sdk": "^1.9.0",
     "das-ui-shared": "^0.2.1",
