@@ -8,7 +8,7 @@ function generateApp (env, port) {
   return {
     name: appName,
     script: 'dist/main.js',
-    instances: isProd ? 2 : 1,
+    instances: 1,
     exec_mode: 'cluster',
     watch: false,
     error_file: `logs/${appName}.stderr.log'`,

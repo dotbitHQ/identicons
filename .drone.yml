@@ -19,7 +19,7 @@ pipeline:
     script:
       - source ~/.zshrc
       - cd /data/code/identicons
-      - npm install
+      - yarn install
       - npm run build
       - npm run reload_production
     when:
