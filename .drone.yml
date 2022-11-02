@@ -1,7 +1,7 @@
 pipeline:
   # production build
   #  build:
-  #    image: node:lts
+  #    image: node:16
   #    commands:
   #      - npm install
   #      - npm run build
@@ -17,6 +17,7 @@ pipeline:
     source: ./
     target: /data/code/identicons
     script:
+      - source ~/.zshrc
       - cd /data/code/identicons
       - npm install
       - npm run build
