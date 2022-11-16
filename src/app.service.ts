@@ -249,14 +249,14 @@ export class AppService {
 
     // account name
     renderTextToCanvas(snapshotCanvasCtx, accountName, {
-      font: `bold ${fontSize}px Arial`,
+      font: `${fontSize}px`,
       x: widthCenter,
       y: 250,
       color: 'white'
     })
 
     renderTextToCanvas(snapshotCanvasCtx, '.bit', {
-      font: 'bold 76px Arial',
+      font: '76px',
       x: widthCenter,
       y: 350,
       color: 'white'
@@ -504,7 +504,7 @@ export class AppService {
 
     // account name
     renderTextToCanvas(snapshotCanvasCtx, account, {
-      font: 'bold 48px Arial',
+      font: '48px',
       x: widthCenter,
       y: 340,
       color: 'black'
@@ -512,7 +512,7 @@ export class AppService {
 
     // NFT page
     renderTextToCanvas(snapshotCanvasCtx, title, {
-      font: '28px Arial',
+      font: '28px',
       x: widthCenter,
       y: 388,
       color: '#979797'
@@ -528,7 +528,7 @@ export class AppService {
 
     // domain
     renderTextToCanvas(snapshotCanvasCtx, url, {
-      font: 'bold 36px Arial',
+      font: '36px',
       x: widthCenter,
       y: 790,
       color: '#49B4C1'
