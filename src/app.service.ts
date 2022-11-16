@@ -1,17 +1,18 @@
 import { Injectable } from '@nestjs/common'
 import { CanvasRenderingContext2D } from 'canvas'
-import { Canvas, createCanvas } from 'node-canvas-webgl'
+import { Canvas, createCanvas, registerFont } from 'node-canvas-webgl'
 import QRCode from 'qrcode'
 import path from 'path'
 import md5 from 'blueimp-md5'
 import { polyfill } from 'spritejs/lib/platform/node-canvas'
 import { Scene, Rect, Path, Sprite, Ring, ENV } from 'spritejs/lib'
-import { TIME_30D } from './constants/index'
-import { Cache, LocalCache } from './decorators/cache.decorator'
+import { LocalCache } from './decorators/cache.decorator'
 import { accountColor } from 'das-ui-shared'
-import Das from 'das-sdk'
 
 polyfill({ ENV })
+
+registerFont(path.resolve(__dirname, '../static/Arial/Arial.ttf'), { family: 'Arial' })
+registerFont(path.resolve(__dirname, '../static/Arial/Arial Bold.ttf'), { family: 'Arial Bold' })
 
 interface PositionsObject {
   [key: string]: [number, number],
@@ -249,14 +250,14 @@ export class AppService {
 
     // account name
     renderTextToCanvas(snapshotCanvasCtx, accountName, {
-      font: `bold ${fontSize}px Arial`,
+      font: `${fontSize}px 'Arial Bold'`,
       x: widthCenter,
       y: 250,
       color: 'white'
     })
 
     renderTextToCanvas(snapshotCanvasCtx, '.bit', {
-      font: 'bold 76px Arial',
+      font: "76px 'Arial Bold'",
       x: widthCenter,
       y: 350,
       color: 'white'
@@ -504,7 +505,7 @@ export class AppService {
 
     // account name
     renderTextToCanvas(snapshotCanvasCtx, account, {
-      font: 'bold 48px Arial',
+      font: "48px 'Arial Bold'",
       x: widthCenter,
       y: 340,
       color: 'black'
@@ -520,7 +521,7 @@ export class AppService {
 
     // scan code or QR code
     renderTextToCanvas(snapshotCanvasCtx, text, {
-      font: '28px',
+      font: '28px Arial',
       x: widthCenter,
       y: 740,
       color: '#6F7684'
@@ -528,7 +529,7 @@ export class AppService {
 
     // domain
     renderTextToCanvas(snapshotCanvasCtx, url, {
-      font: 'bold 36px Arial',
+      font: "36px 'Arial Bold'",
       x: widthCenter,
       y: 790,
       color: '#49B4C1'
