@@ -2244,13 +2244,13 @@ caniuse-lite@^1.0.30001370:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001399.tgz#1bf994ca375d7f33f8d01ce03b7d5139e8587873"
   integrity sha512-4vQ90tMKS+FkvuVWS5/QY1+d805ODxZiKFzsU8o/RsVJz49ZSRR8EjykLJbqhzdPgadbX6wB538wOzle3JniRA==
 
-canvas@^2.10.2:
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.10.2.tgz#66d827e24acd6c34667453728e13d337417d4b20"
-  integrity sha512-FSmlsip0nZ0U4Zcfht0qBJqDhlfGuevTZKE8h+dBOYrJjGvY3iqMGSzzbvkaFhvMXiVxfcMaPHS/kge++T5SKg==
+canvas@2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.10.0.tgz#5f48c8d1ff86c96356809097020336c3a1ccce27"
+  integrity sha512-A0RPxLcH0pPKAY2VN243LdCNcOJXAT8n7nJnN7TZMGv9OuF8we9wfpWgVT/eFMzi+cDYf/384w4BpfjGCD9aKQ==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
-    nan "^2.17.0"
+    nan "^2.15.0"
     simple-get "^3.0.3"
 
 canvas@^2.6.0:
@@ -3018,6 +3018,11 @@ emittery@^0.7.1:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.7.2.tgz#25595908e13af0f5674ab419396e2fb394cdfa82"
   integrity sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ==
+
+emoji-regex@^10.2.1:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-10.2.1.tgz#a41c330d957191efd3d9dfe6e1e8e1e9ab048b3f"
+  integrity sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -5679,11 +5684,6 @@ nan@^2.15.0:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.16.0.tgz#664f43e45460fb98faf00edca0bb0d7b8dce7916"
   integrity sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==
 
-nan@^2.17.0:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.17.0.tgz#c0150a2368a182f033e9aa5195ec76ea41a199cb"
-  integrity sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==
-
 nanoassert@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/nanoassert/-/nanoassert-1.1.0.tgz#4f3152e09540fde28c76f44b19bbcd1d5a42478d"
@@ -5748,7 +5748,7 @@ node-abi@^2.30.1, node-abi@^2.7.0:
   dependencies:
     semver "^5.4.1"
 
-node-canvas-webgl@^0.2.6:
+node-canvas-webgl@0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/node-canvas-webgl/-/node-canvas-webgl-0.2.7.tgz#6aa961015415072bcc0e797edc1b5be3729ebb04"
   integrity sha512-Rg3vlqdvvjglJW1aHb9JEBIGt6PsYCs1w/XXQk/5WztFQ9+IjBpqLsmavQr0jq6hbqMuiSMoFcn6BH+MUHpX/g==
@@ -7120,10 +7120,10 @@ sprite-timeline@^1.10.2:
   dependencies:
     babel-runtime "^6.26.0"
 
-spritejs@^3.7.34:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/spritejs/-/spritejs-3.8.1.tgz#d8e57ca7d5e2dd9eda2d971e10d82a049156e862"
-  integrity sha512-Qc/WJMGXA09MD3QufGgLowTgGfBIxmozVWRNifBMyW4PGBqctDECkmvW/MinraNCgrQphRrZ8IUEQUl4enEgKw==
+spritejs@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/spritejs/-/spritejs-3.8.2.tgz#52fbdf284cedbf01da0368f0737d24549714df62"
+  integrity sha512-5DC+deT3ha5J4QbZOtybsKluN3azRcPqIMm2P6kde+85ei2jR/t1csm2q9ffgNwkGNd/I8ZsU51Vv4o2GFQFgg==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@mesh.js/core" "^1.1.23"
