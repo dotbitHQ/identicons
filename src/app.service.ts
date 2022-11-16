@@ -159,7 +159,7 @@ export class AppService {
   @LocalCache({
     dir: 'seo-card',
     key: (account: string, saleTag?: boolean) => `${account}.${saleTag ? '1' : '0'}.jpg`
-    })
+  })
   async seo (account: string, saleTag?: boolean): Promise<Buffer> {
     const width = 900
     const height = 473
@@ -249,14 +249,14 @@ export class AppService {
 
     // account name
     renderTextToCanvas(snapshotCanvasCtx, accountName, {
-      font: `${fontSize}px`,
+      font: `bold ${fontSize}px Arial`,
       x: widthCenter,
       y: 250,
       color: 'white'
     })
 
     renderTextToCanvas(snapshotCanvasCtx, '.bit', {
-      font: '76px',
+      font: 'bold 76px Arial',
       x: widthCenter,
       y: 350,
       color: 'white'
@@ -268,7 +268,7 @@ export class AppService {
   @LocalCache({
     dir: 'identicon',
     key: (account: string, saleTag?: boolean) => `${account}.jpg`
-    })
+  })
   async identiconBuffer (account: string): Promise<Buffer> {
     const canvas = await this.identicon(account)
     return canvas.toBuffer()
@@ -380,7 +380,7 @@ export class AppService {
   @LocalCache({
     dir: 'card-legacy',
     key: (account: string) => `${account}.jpg`
-    })
+  })
   async card (
     account: string,
     title: string,
@@ -504,7 +504,7 @@ export class AppService {
 
     // account name
     renderTextToCanvas(snapshotCanvasCtx, account, {
-      font: '48px',
+      font: 'bold 48px Arial',
       x: widthCenter,
       y: 340,
       color: 'black'
@@ -512,7 +512,7 @@ export class AppService {
 
     // NFT page
     renderTextToCanvas(snapshotCanvasCtx, title, {
-      font: '28px',
+      font: '28px Arial',
       x: widthCenter,
       y: 388,
       color: '#979797'
@@ -528,7 +528,7 @@ export class AppService {
 
     // domain
     renderTextToCanvas(snapshotCanvasCtx, url, {
-      font: '36px',
+      font: 'bold 36px Arial',
       x: widthCenter,
       y: 790,
       color: '#49B4C1'
