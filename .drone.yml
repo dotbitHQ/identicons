@@ -24,3 +24,20 @@ pipeline:
       - npm run reload_production
     when:
       branch: [main]
+
+  # deploy to test
+  deploy_test:
+    image: drillster/drone-rsync
+    hosts: [ $HOST_IP ]
+    user: root
+    secrets: [ rsync_key, host_ip ]
+    source: ./
+    target: /data/code/identicons_test
+    script:
+      - source ~/.zshrc
+      - cd /data/code/identicons_test
+      - yarn install
+      - npm run build
+      - npm run reload_test
+    when:
+      branch: [feat/*, fix/*, fix/*/*]
