@@ -5,10 +5,6 @@ export const TIME_10S = 10
 
 export const IsMainnet = process.env.NET_ENV === 'production'
 
-console.log('==========')
-console.log(`isMainnet: ${IsMainnet}`)
-console.log('==========')
-
 export const MainNet = {
   indexer: 'https://indexer-not-use-in-production-env.did.id/',
   contract: '0x60eB332Bd4A0E2a9eEB3212cFdD6Ef03Ce4CB3b5',
