@@ -8,28 +8,15 @@ import { AppService } from '../app.service'
 import { LocalCache } from '../decorators/cache.decorator'
 import { getCategory, getCharacterSet, tokenIdToAccountId } from '../modules/tools'
 import abi from './abi.json'
+import { Domain, NetConfig } from '../constants'
 const cheerio = require('cheerio') // requiring in cjs to avoid ts error
 
-// testnet
-// const config = {
-//   indexer: 'https://test-indexer-not-use-in-production-env.did.id/',
-//   contract: '0x7eCBEE03609f353d041942FF50CdA2A120ABddd9',
-//   network: 'goerli',
-// }
-
-// mainnet
-const config = {
-  indexer: 'https://indexer-not-use-in-production-env.did.id/',
-  contract: '0x60eB332Bd4A0E2a9eEB3212cFdD6Ef03Ce4CB3b5',
-  network: 'homestead',
-}
-
 const das = new Das({
-  url: config.indexer,
+  url: NetConfig.indexer,
 })
 
-const provider = ethers.getDefaultProvider(config.network)
-const contract = new ethers.Contract(config.contract, abi, provider)
+const provider = ethers.getDefaultProvider(NetConfig.network)
+const contract = new ethers.Contract(NetConfig.contract, abi, provider)
 
 const svgTemplate = fs.readFileSync(path.resolve(__dirname, '../../static/erc721-card.svg'), 'utf8')
 
@@ -189,7 +176,7 @@ export class Erc721Service {
     return JSON.stringify({
       name: account.account,
       description: `${account.account}, Web3 identity for you and your community.\n https://did.id\n More about ${account.account}: https://bit.ly/3te6SOP`,
-      image: `https://display.did.id/erc721/card/${tokenId}`,
+      image: `https://${Domain}/erc721/card/${tokenId}`,
       external_url: 'https://did.id',
       attributes: [{
         trait_type: 'Expiration Date',

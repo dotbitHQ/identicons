@@ -10,12 +10,13 @@ import { fetchJson } from '@ethersproject/web'
 import { BigNumber } from '@ethersproject/bignumber'
 import { hexConcat, hexDataSlice, hexZeroPad } from '@ethersproject/bytes'
 import { toUtf8String } from '@ethersproject/strings'
+import { Domain, NetConfig } from './constants'
 
 const das = new Das({
-  url: 'https://indexer-not-use-in-production-env.did.id',
+  url: NetConfig.indexer
 })
 
-const provider = new ethers.providers.AnkrProvider()
+const provider = new ethers.providers.AnkrProvider(NetConfig.network)
 
 function unitIndexes (length: number): string[] {
   const maxLength = Math.max(length.toString().length, 2)
@@ -247,10 +248,10 @@ export class AvatarService {
           content: 'identicon',
         }, {
           type: 'url',
-          content: `https://display.did.id/identicon/${accountName}`
+          content: `https://${Domain}/identicon/${accountName}`
         }],
-        // url: `https://display.did.id/avatar/${accountName}`,
-        url: `https://display.did.id/identicon/${accountName}`
+        // url: `https://${Domain}/avatar/${accountName}`,
+        url: `https://${Domain}/identicon/${accountName}`
       }
     }
 
