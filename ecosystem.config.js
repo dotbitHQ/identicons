@@ -17,7 +17,7 @@ function generateApp (env, port) {
     env: {
       NODE_ENV: 'production',
       PORT: port,
-      NET_ENV: env,
+      NODE_CONFIG_ENV: env,
     }
   }
 }
