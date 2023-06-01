@@ -251,7 +251,8 @@ export class Erc721Service {
     if (suffix !== '.bit') {
       $('#rounded_square').attr('height', 420)
       $('#bit-logo').remove()
-      $('#text-desc').text('')
+      // can not figure out why we can only remove it, while can not set a empty text like .text('')
+      $('#text-desc').remove()
       $('#text-loc')
         .attr('x', (500 - 30 - getTextWidth(account, 18)) / 2)
         .attr('y', 472)
