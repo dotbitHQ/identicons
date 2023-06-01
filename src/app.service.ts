@@ -275,8 +275,8 @@ export class AppService {
     return canvas.toBuffer()
   }
 
-  async identicon (name: string): Promise<Canvas> {
-    const nameMd5 = md5(name)
+  async identicon (account: string): Promise<Canvas> {
+    const nameMd5 = md5(account)
     const _colors: number[] = getColors(nameMd5)
     const _positions: PositionsObject = getPositions(nameMd5)
     const _figurePaths: number[] = getFigurePaths(nameMd5)
