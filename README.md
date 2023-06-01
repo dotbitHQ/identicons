@@ -2,6 +2,11 @@
 
 identicons service
 
+## Preparation
+This repo rely on spritejs, which rely on node-canvas-webgl. If you are running this repo on MacOS, you should install python2 first.
+
+> Just follow the instruction to install python2: https://stackoverflow.com/questions/70098133/npm-error-cant-find-python-executable-in-macos-big-sur
+
 ## Installation
 
 ```bash
