@@ -9,6 +9,7 @@ import { LocalCache } from '../decorators/cache.decorator'
 import { getCategory, getCharacterSet, tokenIdToAccountId } from '../modules/tools'
 import abi from './abi.json'
 import { Domain, NetConfig } from '../constants'
+import { getTextWidth } from './text-width'
 const cheerio = require('cheerio') // requiring in cjs to avoid ts error
 
 const das = new Das({
@@ -73,6 +74,11 @@ const accountFormats: Format[] = [{
   fontSize: 24,
   lines: 4,
 }]
+
+const suffix2Logo = {
+  '.max': 'static/suffix/logo.max.png',
+  // '.max': 'static/suffix/logo.max.black.png',
+}
 
 function getCharWeight (char: string) {
   return char.match(/\ud83d[\ude00-\ude4f]/g) ? 2 : 1
@@ -162,7 +168,7 @@ export class Erc721Service {
     key: function (tokenId: string) {
       return `${tokenId}.json`
     }
-    })
+  })
   async erc721Metadata (tokenId: string) {
     if (!tokenId.match(/^\d{30,50}$/)) {
       throw new Error(`${tokenId} is not valid`)
@@ -200,15 +206,20 @@ export class Erc721Service {
   @LocalCache({
     dir: 'erc721card',
     key: function (tokenId: string) {
-    return `${tokenId}.${arguments.length}.svg`
+      return `${tokenId}.${arguments.length}.svg`
     }
-    })
+  })
   async erc721Card (tokenId: string, textDesc = 'Web3 Identity', textLoc: string) {
     let account = ''
+    let suffix = '.bit'
 
     // we can handle both account and account_id here
     if (tokenId.match(/\.bit$/)) {
       account = tokenId
+    }
+    else if (tokenId.includes('.')) {
+      account = tokenId
+      suffix = tokenId.match(/\.[^.]+$/)[0]
     }
     else {
       const accountId = tokenIdToAccountId(tokenId)
@@ -216,19 +227,47 @@ export class Erc721Service {
       account = accountInfo.account
     }
 
-    const name = account.replace(/\.bit$/, '')
+    let avatarBuffer: Buffer
+
+    if (suffix2Logo[suffix]) {
+      avatarBuffer = fs.readFileSync(suffix2Logo[suffix])
+    }
+    // .bit or no logo
+    else {
+      avatarBuffer = await this.appService.identiconBuffer(account)
+    }
+
+    const avatar = avatarBuffer.toString('base64')
+
+    const name = account.replace(suffix, '')
     const nameDisplay = generateNameDisplay(name)
     const $nameText = generateNameSvg(nameDisplay)
 
-    const avatarBuffer = await this.appService.identiconBuffer(account)
-    const avatar = avatarBuffer.toString('base64')
-
-    const color = accountColor(account)
+    const bgColor = accountColor(account)
+    const suffixWidth = getTextWidth(suffix, 66) + 80
 
     const $ = cheerio.load(svgTemplate)
-    $('#account').prepend($nameText)
+
+    if (suffix !== '.bit') {
+      $('#rounded_square').attr('height', 420)
+      $('#bit-logo').remove()
+      $('#text-desc').text('')
+      $('#text-loc')
+        .attr('x', (500 - 30 - getTextWidth(account, 18)) / 2)
+        .attr('y', 472)
+        .text(`d.id/${account}`)
+    }
+    else {
+      $('#text-desc').text('Web3 Identity')
+    }
+
+    $('#rounded_square').attr('fill', bgColor.color)
     $('#avatarImage').attr('xlink:href', `data:image/png;base64,${avatar}`)
-    $('#rounded_square').attr('fill', color.color)
+    $('#account').prepend($nameText)
+    $('#account_suffix').text(suffix)
+    $('#account_suffix_container')
+      .attr('width', suffixWidth)
+      .attr('x', (500 - suffixWidth) / 2)
     $('#text-desc').text(textDesc)
     $('#text-loc').text(textLoc)
 

@@ -6,12 +6,10 @@
             <rect id="avatar" x="197.5" y="62.5" width="102" height="102" rx="52.5" fill="url(#avatarImagePattern)" stroke="white" stroke-width="3"/>
             <g id="account">
                 <g>
-                    <rect id="account_suffix_container" x="150" y="300" width="200" height="67" rx="33.5" fill="#121314" fill-opacity="0.08"/>
+                    <rect id="account_suffix_container" x="167" y="300" width="166" height="67" rx="33.5" fill="#121314" fill-opacity="0.08"/>
                 </g>
                 <g>
-                    <text id="account_suffix" fill="white" font-size="56" font-weight="900" x="245" y="352" style="text-anchor:middle;" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'">
-                        <tspan x="250">.bit</tspan>
-                    </text>
+                    <text id="account_suffix" x="205" y="353" fill="white" font-size="56" font-weight="900" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'"><tspan>.bit</tspan></text>
                 </g>
             </g>
         </g>
@@ -31,11 +29,8 @@
                     </g>
                 </g>
             </g>
-            <text id="Web3 Identity" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
-                <tspan id="text-loc" x="100" y="464"></tspan>
-            </text>
-            <text id="Web3 Identity" x="360" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji', sans-serif, serif">
-                <tspan id="text-desc">Web3 Identity</tspan>
+            <text id="Web3 Identity" x="350" y="462" opacity="0.64" fill="#E9FBF5" font-size="16" font-weight="bold" font-family="'SF Pro Display',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Ubuntu,Helvetica,Arial,'Apple Color Emoji','Noto Color Emoji','Segoe UI Emoji'">
+                <tspan>Web3 Identity</tspan>
             </text>
         </g>
     </g>
