@@ -41,6 +41,7 @@
     </g>
 
     <defs>
+        <image id="avatarImage" data-name="avatar-11.png" width="320" height="320"/>
         <pattern id="avatarImagePattern" patternContentUnits="objectBoundingBox" width="1" height="1">
             <use xlink:href="#avatarImage" transform="scale(0.003125)"/>
         </pattern>
@@ -48,6 +49,5 @@
             <stop stop-color="#A1FFCD" stop-opacity="0.96"/>
             <stop offset="1" stop-color="#9AF785"/>
         </linearGradient>
-        <image id="avatarImage" data-name="avatar-11.png" width="320" height="320"/>
     </defs>
 </svg>
