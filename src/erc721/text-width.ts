@@ -103,9 +103,22 @@ const getLetterWidth = (letter, fontSize): number => fontSize * (LetterMap[lette
 export const getTextWidth = (text: string, fontSize: number): number => {
   // Chinese regexp
   const chineseRegExp = /[\u4E00-\u9FA5]+/
-  const textWidth = text.split('').reduce((pre, curLetter) => {
-    const letterWidth = chineseRegExp.test(curLetter) ? fontSize : getLetterWidth(curLetter, fontSize)
-    return pre + letterWidth
-  }, 0)
+  const emojiRegExp =  /(\ud83c[\udf00-\udfff])|(\ud83d[\udc00-\ude4f\ude80-\udeff])|[\u2600-\u2B55]/
+  let textWidth = 0
+
+  // We should use for of here instead of any other loop method.
+  // Because for...of can handle emoji correctly, other loop methods will break emoji into multiple parts.
+  for (const curLetter of text) {
+    if (chineseRegExp.test(curLetter)) {
+      textWidth += fontSize
+    }
+    else if (emojiRegExp.test(curLetter)) {
+      textWidth += fontSize
+    }
+    else {
+      textWidth += getLetterWidth(curLetter, fontSize)
+    }
+  }
+
   return textWidth
 }
